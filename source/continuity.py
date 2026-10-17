@@ -1,5 +1,5 @@
 CONTINUITY = '''
-<section>
+<section class="content-page">
 <h1>Previous course continuity</h1>
 <p>Inspected on 18 October 2026. Existing files were not overwritten. Completion boxes live in other browsers' localStorage, so <strong>nothing is pre-ticked here</strong>.</p>
 

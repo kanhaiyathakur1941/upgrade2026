@@ -4,39 +4,49 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Upgrade 2026 — Career documentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>
+(function(){
+  var key="upgrade2026-progress-v1", mode="system";
+  try{mode=JSON.parse(localStorage.getItem(key)||"{}").theme||"system";}catch(e){}
+  if(mode!=="light"&&mode!=="dark"&&mode!=="system") mode="system";
+  var resolved=mode==="system"?(window.matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"):mode;
+  document.documentElement.setAttribute("data-theme",resolved);
+  document.documentElement.setAttribute("data-theme-mode",mode);
+})();
+</script>
 <style>
-:root {
-  --bg:#eef1f6; --paper:#fff; --ink:#0f172a; --muted:#475569; --line:#d8dee9;
-  --accent:#2563eb; --accent-hover:#1d4ed8; --accent-ink:#1e40af; --soft:#eff6ff;
-  --good:#047857; --good-soft:#ecfdf5; --warn:#9a3412; --warn-soft:#fff7ed;
-  --bad:#b91c1c; --code:#0f172a; --code-bg:#f1f5f9;
-  --shadow:0 4px 24px rgba(15,23,42,.08); --sidebar:300px; --header-h:120px;
-  --bottom-nav:0px; --radius:14px; --tap:44px;
+html[data-theme="light"]{
   color-scheme:light;
+  --bg:#e8ecf3; --paper:#ffffff; --ink:#0f172a; --muted:#334155; --line:#cbd5e1;
+  --accent:#2563eb; --accent-hover:#1d4ed8; --accent-ink:#1e3a8a; --soft:#eff6ff;
+  --good:#047857; --good-soft:#ecfdf5; --warn:#9a3412; --warn-soft:#fff7ed;
+  --bad:#b91c1c; --code:#0f172a; --code-bg:#f1f5f9; --btn-on-primary:#ffffff;
+  --shadow:0 4px 24px rgba(15,23,42,.08);
 }
-html[data-theme="dark"] {
-  --bg:#0b0f14; --paper:#141a22; --ink:#f1f5f9; --muted:#94a3b8; --line:#2a3441;
-  --accent:#60a5fa; --accent-hover:#93c5fd; --accent-ink:#dbeafe; --soft:#1a2740;
-  --good:#34d399; --good-soft:#052e24; --warn:#fcd34d; --warn-soft:#2a2110;
-  --bad:#fca5a5; --code:#e2e8f0; --code-bg:#0b1020;
-  --shadow:0 8px 32px rgba(0,0,0,.45); color-scheme:dark;
+html[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0a0e14; --paper:#151b24; --ink:#f8fafc; --muted:#cbd5e1; --line:#334155;
+  --accent:#60a5fa; --accent-hover:#93c5fd; --accent-ink:#bfdbfe; --soft:#1e293b;
+  --good:#34d399; --good-soft:#064e3b; --warn:#fde68a; --warn-soft:#422006;
+  --bad:#fca5a5; --code:#e2e8f0; --code-bg:#0f172a; --btn-on-primary:#0f172a;
+  --shadow:0 8px 32px rgba(0,0,0,.5);
 }
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) {
-    --bg:#0b0f14; --paper:#141a22; --ink:#f1f5f9; --muted:#94a3b8; --line:#2a3441;
-    --accent:#60a5fa; --accent-hover:#93c5fd; --accent-ink:#dbeafe; --soft:#1a2740;
-    --good:#34d399; --good-soft:#052e24; --warn:#fcd34d; --warn-soft:#2a2110;
-    --bad:#fca5a5; --code:#e2e8f0; --code-bg:#0b1020;
-    --shadow:0 8px 32px rgba(0,0,0,.45); color-scheme:dark;
-  }
+:root{
+  --sidebar:300px; --header-h:120px; --bottom-nav:0px; --radius:14px; --tap:44px;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:calc(var(--bottom-nav) + env(safe-area-inset-bottom,0px))}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:calc(var(--bottom-nav) + env(safe-area-inset-bottom,0px));-webkit-font-smoothing:antialiased}
+.main-inner,.main-inner section,.main-inner article{color:var(--ink)}
+.main-inner h1,.main-inner h2,.main-inner h3,.main-inner p,.main-inner li,.main-inner td,.main-inner th,.main-inner strong{color:inherit}
+.main-inner a:not(.btn):not(.topic-card){color:var(--accent-ink)}
 a{color:var(--accent-ink);text-underline-offset:2px}
 a:hover{color:var(--accent)}
 button,input,select,textarea{font:inherit;color:inherit}
-code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+code,pre{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.92em}
 code{background:var(--code-bg);padding:.1em .35em;border-radius:6px}
 .skip{position:absolute;left:-999px;top:0}
 .skip:focus{left:8px;top:8px;background:var(--paper);padding:10px 14px;z-index:100;border-radius:8px;box-shadow:var(--shadow)}
@@ -52,8 +62,7 @@ code{background:var(--code-bg);padding:.1em .35em;border-radius:6px}
 .track > span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--good));border-radius:99px;transition:width .35s ease}
 .icon-btn,.btn{min-height:var(--tap);border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:0 14px;cursor:pointer;font-weight:600;font-size:.875rem;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:background .15s,border-color .15s,transform .1s}
 .icon-btn:active,.btn:active{transform:scale(.98)}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-html[data-theme="dark"] .btn.primary{color:#0f172a}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--btn-on-primary)}
 .btn.ghost{background:transparent}
 .btn[aria-pressed="true"],.btn.active{background:var(--soft);border-color:var(--accent);color:var(--accent-ink)}
 .icon-btn.icon-only{width:var(--tap);padding:0}
@@ -71,7 +80,7 @@ html[data-theme="dark"] .btn.primary{color:#0f172a}
 .sidebar-head h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0}
 .filters{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
 .filters label{font-size:.8rem;font-weight:600;color:var(--muted)}
-.filters input,.filters select,.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:12px 14px;min-height:var(--tap)}
+.filters input,.filters select,.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:10px;padding:12px 14px;min-height:var(--tap)}
 .field{display:block;margin:12px 0}
 .phase-label{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:16px 0 6px;padding-top:8px;border-top:1px solid var(--line)}
 .mod{margin-bottom:4px;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
@@ -103,7 +112,8 @@ h3{font-size:1.05rem;margin:18px 0 8px}
 html[data-theme="dark"] .pill.adv{background:#312e81;color:#e9d5ff}
 pre{background:var(--code-bg);color:var(--code);padding:14px 16px;border-radius:12px;overflow:auto;border:1px solid var(--line);font-size:.8rem;line-height:1.5;-webkit-overflow-scrolling:touch}
 .callout{border-left:4px solid var(--accent);background:var(--soft);padding:14px 16px;border-radius:12px;margin:14px 0;line-height:1.55}
-.callout.warn{border-color:var(--warn);background:var(--warn-soft);color:var(--ink)}
+.callout,.callout.warn,.callout.good{color:var(--ink)}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft)}
 .callout.good{border-color:var(--good);background:var(--good-soft)}
 .toc{font-size:.875rem;display:grid;gap:6px}
 .toc a{text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line)}
@@ -155,6 +165,8 @@ th{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--mu
   .bottom-nav a{flex:1;text-decoration:none;color:var(--muted);font-size:.65rem;font-weight:700;text-align:center;padding:6px 4px;border-radius:10px;min-height:var(--tap);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;max-width:72px}
   .bottom-nav a span{font-size:1.1rem;line-height:1}
   .bottom-nav a[aria-current="page"]{color:var(--accent-ink);background:var(--soft)}
+  .bottom-nav .nav-more{flex:1;border:0;background:transparent;color:var(--muted);font-size:.65rem;font-weight:700;flex-direction:column;min-height:var(--tap);max-width:72px;border-radius:10px;font-family:inherit;cursor:pointer}
+  .bottom-nav .nav-more span{font-size:1.1rem;line-height:1}
   .status-row .btn{min-width:calc(50% - 4px)}
   .pager{position:sticky;bottom:calc(var(--bottom-nav) + 8px);background:var(--bg);padding:10px 0;margin:20px -4px 0;z-index:5}
 }
@@ -171,6 +183,7 @@ th{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--mu
   html{scroll-behavior:auto}
   .track > span,.sidebar,.sheet-panel,.drawer-backdrop{transition:none}
 }
+select option{background:var(--paper);color:var(--ink)}
 </style>
 </head>
 <body>
@@ -186,7 +199,7 @@ th{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--mu
       </div>
       <div class="grow"></div>
       <div class="toolbar noprint desktop-only">
-        <button class="icon-btn" id="themeBtn" type="button" title="Toggle theme">Theme</button>
+        <button class="icon-btn" id="themeBtn" type="button" title="Switch light, dark, or system theme">Light</button>
         <button class="icon-btn" id="exportBtn" type="button">Export</button>
         <button class="icon-btn" id="importBtn" type="button">Import</button>
         <button class="icon-btn" id="printBtn" type="button">Print</button>
@@ -234,7 +247,7 @@ th{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--mu
   <a href="#plan" data-nav="plan"><span>📅</span>Plan</a>
   <a href="#projects" data-nav="projects"><span>🛠</span>Build</a>
   <a href="#interviews" data-nav="interviews"><span>💬</span>Q&amp;A</a>
-  <button type="button" class="btn ghost mobile-only" id="moreBtnBottom" style="flex:1;border:0;background:transparent;color:var(--muted);font-size:.65rem;font-weight:700;flex-direction:column;min-height:var(--tap)"><span style="font-size:1.1rem">⋯</span>More</button>
+  <button type="button" class="nav-more mobile-only noprint" id="moreBtnBottom"><span>⋯</span>More</button>
 </nav>
 <div class="sheet noprint" id="moreSheet" aria-hidden="true">
   <div class="sheet-backdrop" id="sheetBackdrop"></div>
@@ -244,7 +257,7 @@ th{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--mu
     <a class="btn ghost" href="#continuity">Previous course</a>
     <a class="btn ghost" href="#refs">References</a>
     <a class="btn ghost" href="#topic/py-diagnostic">Start diagnostic</a>
-    <button class="btn ghost" type="button" id="themeBtnMobile">Toggle theme</button>
+    <button class="btn ghost" type="button" id="themeBtnMobile">Theme: Light / Dark / System</button>
     <button class="btn ghost" type="button" id="exportBtnMobile">Export progress</button>
     <button class="btn ghost" type="button" id="importBtnMobile">Import progress</button>
     <button class="btn ghost" type="button" id="printBtnMobile">Print page</button>
@@ -266,7 +279,7 @@ function blank(){
   return {topics:{}, projects:{}, answers:{}, daily:{}, context:{
     years:"about 4.5", ctc:"7", target:"20", hours:"5", location:"", notice:"",
     note:"Laravel, PHP, intermediate Python, SQL, PostgreSQL, Linux, AWS, REST, and production web apps. JavaScript, React/Vue, MySQL, Nginx, Jenkins, and Docker fundamentals are exposure, not a second career."
-  }, theme:"light"};
+  }, theme:"system"};
 }
 let state = loadState();
 function save(){ localStorage.setItem(KEY, JSON.stringify(state)); paintProgress(); }
@@ -297,12 +310,47 @@ function inline(s){
 }
 function slug(s){ return String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
 
-function setTheme(theme){
-  state.theme = theme;
-  document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
+function resolveTheme(mode){
+  if(mode === "light" || mode === "dark") return mode;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+function themeModeLabel(mode){
+  if(mode === "light") return "Light";
+  if(mode === "dark") return "Dark";
+  return "System";
+}
+function applyTheme(){
+  const mode = state.theme === "light" || state.theme === "dark" || state.theme === "system" ? state.theme : "system";
+  const resolved = resolveTheme(mode);
+  document.documentElement.setAttribute("data-theme", resolved);
+  document.documentElement.setAttribute("data-theme-mode", mode);
+  let meta = document.querySelector('meta[name="theme-color"]');
+  if(!meta){
+    meta = document.createElement("meta");
+    meta.name = "theme-color";
+    document.head.appendChild(meta);
+  }
+  meta.content = resolved === "dark" ? "#0a0e14" : "#ffffff";
+  const label = themeModeLabel(mode);
+  const btn = document.getElementById("themeBtn");
+  if(btn) btn.textContent = label;
+  const mobile = document.getElementById("themeBtnMobile");
+  if(mobile) mobile.textContent = "Theme: " + label + " (tap to change)";
+}
+function setTheme(mode){
+  state.theme = mode;
+  applyTheme();
   save();
 }
-document.documentElement.dataset.theme = state.theme === "dark" ? "dark" : "light";
+function cycleTheme(){
+  const order = ["light", "dark", "system"];
+  const i = order.indexOf(state.theme);
+  setTheme(order[(i + 1) % order.length]);
+}
+applyTheme();
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+  if(state.theme === "system") applyTheme();
+});
 
 function paintProgress(){
   const topics = allTopics();
@@ -661,7 +709,7 @@ function bind(root){
   });
 }
 
-document.getElementById("themeBtn").addEventListener("click", () => setTheme(state.theme === "dark" ? "light" : "dark"));
+document.getElementById("themeBtn").addEventListener("click", cycleTheme);
 document.getElementById("exportBtn").addEventListener("click", () => {
   const blob = new Blob([JSON.stringify(state, null, 2)], {type:"application/json"});
   const a = document.createElement("a");
@@ -731,7 +779,7 @@ document.getElementById("moreBtnBottom")?.addEventListener("click", openSheet);
 document.getElementById("sheetBackdrop")?.addEventListener("click", closeSheet);
 document.getElementById("closeSheet")?.addEventListener("click", closeSheet);
 document.querySelectorAll("#moreSheet a").forEach(a => a.addEventListener("click", closeSheet));
-document.getElementById("themeBtnMobile")?.addEventListener("click", () => { setTheme(state.theme === "dark" ? "light" : "dark"); closeSheet(); });
+document.getElementById("themeBtnMobile")?.addEventListener("click", () => { cycleTheme(); closeSheet(); });
 document.getElementById("exportBtnMobile")?.addEventListener("click", () => { document.getElementById("exportBtn").click(); closeSheet(); });
 document.getElementById("importBtnMobile")?.addEventListener("click", () => { document.getElementById("importBtn").click(); closeSheet(); });
 document.getElementById("printBtnMobile")?.addEventListener("click", () => { window.print(); closeSheet(); });
