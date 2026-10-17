@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Upgrade 2026 — Career documentation</title>
+<style>
+:root {
+  --bg:#eef1f6; --paper:#fff; --ink:#0f172a; --muted:#475569; --line:#d8dee9;
+  --accent:#2563eb; --accent-hover:#1d4ed8; --accent-ink:#1e40af; --soft:#eff6ff;
+  --good:#047857; --good-soft:#ecfdf5; --warn:#9a3412; --warn-soft:#fff7ed;
+  --bad:#b91c1c; --code:#0f172a; --code-bg:#f1f5f9;
+  --shadow:0 4px 24px rgba(15,23,42,.08); --sidebar:300px; --header-h:120px;
+  --bottom-nav:0px; --radius:14px; --tap:44px;
+  color-scheme:light;
+}
+html[data-theme="dark"] {
+  --bg:#0b0f14; --paper:#141a22; --ink:#f1f5f9; --muted:#94a3b8; --line:#2a3441;
+  --accent:#60a5fa; --accent-hover:#93c5fd; --accent-ink:#dbeafe; --soft:#1a2740;
+  --good:#34d399; --good-soft:#052e24; --warn:#fcd34d; --warn-soft:#2a2110;
+  --bad:#fca5a5; --code:#e2e8f0; --code-bg:#0b1020;
+  --shadow:0 8px 32px rgba(0,0,0,.45); color-scheme:dark;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --bg:#0b0f14; --paper:#141a22; --ink:#f1f5f9; --muted:#94a3b8; --line:#2a3441;
+    --accent:#60a5fa; --accent-hover:#93c5fd; --accent-ink:#dbeafe; --soft:#1a2740;
+    --good:#34d399; --good-soft:#052e24; --warn:#fcd34d; --warn-soft:#2a2110;
+    --bad:#fca5a5; --code:#e2e8f0; --code-bg:#0b1020;
+    --shadow:0 8px 32px rgba(0,0,0,.45); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:calc(var(--bottom-nav) + env(safe-area-inset-bottom,0px))}
+a{color:var(--accent-ink);text-underline-offset:2px}
+a:hover{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+code{background:var(--code-bg);padding:.1em .35em;border-radius:6px}
+.skip{position:absolute;left:-999px;top:0}
+.skip:focus{left:8px;top:8px;background:var(--paper);padding:10px 14px;z-index:100;border-radius:8px;box-shadow:var(--shadow)}
+.app-header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(15,23,42,.04)}
+.bar{display:flex;align-items:center;gap:10px;padding:10px 14px;flex-wrap:wrap}
+.bar-top{width:100%;display:flex;align-items:center;gap:10px}
+.brand{font-weight:800;letter-spacing:-.03em;text-decoration:none;color:var(--ink);font-size:1.05rem}
+.brand span{color:var(--accent)}
+.grow{flex:1;min-width:8px}
+.progress-wrap{flex:1;min-width:120px;max-width:320px}
+.progress-label{display:flex;justify-content:space-between;font-size:.75rem;font-weight:600;color:var(--muted);margin-bottom:4px}
+.track{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.track > span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--good));border-radius:99px;transition:width .35s ease}
+.icon-btn,.btn{min-height:var(--tap);border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:0 14px;cursor:pointer;font-weight:600;font-size:.875rem;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:background .15s,border-color .15s,transform .1s}
+.icon-btn:active,.btn:active{transform:scale(.98)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+html[data-theme="dark"] .btn.primary{color:#0f172a}
+.btn.ghost{background:transparent}
+.btn[aria-pressed="true"],.btn.active{background:var(--soft);border-color:var(--accent);color:var(--accent-ink)}
+.icon-btn.icon-only{width:var(--tap);padding:0}
+.icon-btn:focus-visible,.btn:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.toolbar{display:flex;gap:6px;flex-wrap:wrap}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:0 14px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{text-decoration:none;color:var(--muted);font-size:.875rem;font-weight:650;padding:8px 14px;border-radius:999px;white-space:nowrap;border:1px solid transparent}
+.tabs a[aria-current="page"]{background:var(--soft);color:var(--accent-ink);border-color:var(--line)}
+.layout{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);min-height:calc(100dvh - var(--header-h))}
+.layout.solo{grid-template-columns:minmax(0,1fr)}
+.layout.with-curriculum .main-wrap{max-width:920px}
+.sidebar{border-right:1px solid var(--line);background:var(--paper);padding:14px;position:sticky;top:var(--header-h);height:calc(100dvh - var(--header-h));overflow:auto;overscroll-behavior:contain}
+.sidebar-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sidebar-head h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0}
+.filters{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.filters label{font-size:.8rem;font-weight:600;color:var(--muted)}
+.filters input,.filters select,.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:12px 14px;min-height:var(--tap)}
+.field{display:block;margin:12px 0}
+.phase-label{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:16px 0 6px;padding-top:8px;border-top:1px solid var(--line)}
+.mod{margin-bottom:4px;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.mod > button{width:100%;text-align:left;background:var(--bg);border:0;padding:12px 14px;cursor:pointer;font-weight:700;font-size:.875rem;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:var(--tap)}
+.mod > button::after{content:"";width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s;flex-shrink:0}
+.mod > button[aria-expanded="true"]::after{transform:rotate(-135deg);margin-top:4px}
+.mod ul{list-style:none;margin:0;padding:4px 8px 10px;background:var(--paper)}
+.mod a{display:flex;align-items:flex-start;gap:8px;text-decoration:none;color:var(--ink);font-size:.875rem;padding:10px 10px;border-radius:8px;line-height:1.35}
+.mod a:hover,.mod a[aria-current="true"]{background:var(--soft)}
+.mod a[aria-current="true"]{font-weight:700;color:var(--accent-ink)}
+.dot{width:10px;height:10px;border-radius:99px;margin-top:5px;flex-shrink:0;background:var(--line)}
+.dot.progress{background:var(--warn)} .dot.done{background:var(--good)} .dot.revision{background:var(--bad)}
+.main{padding:20px 20px 48px;width:100%}
+.main-inner{max-width:920px;margin:0 auto}
+.hero h1,.main h1{font-size:clamp(1.6rem,4.5vw,2.25rem);line-height:1.2;letter-spacing:-.03em;margin:0 0 10px}
+.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.card-interactive{transition:transform .15s,box-shadow .15s}
+.card-interactive:active{transform:scale(.99)}
+.kpi{font-size:2rem;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h2{font-size:1.25rem;margin:28px 0 10px;letter-spacing:-.02em}
+h3{font-size:1.05rem;margin:18px 0 8px}
+.topic-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.meta{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.pill{font-size:.7rem;font-weight:700;border-radius:999px;padding:4px 10px;background:var(--soft);color:var(--accent-ink)}
+.pill.opt{background:var(--warn-soft);color:var(--warn)}
+.pill.adv{background:#ede9fe;color:#5b21b6}
+html[data-theme="dark"] .pill.adv{background:#312e81;color:#e9d5ff}
+pre{background:var(--code-bg);color:var(--code);padding:14px 16px;border-radius:12px;overflow:auto;border:1px solid var(--line);font-size:.8rem;line-height:1.5;-webkit-overflow-scrolling:touch}
+.callout{border-left:4px solid var(--accent);background:var(--soft);padding:14px 16px;border-radius:12px;margin:14px 0;line-height:1.55}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft);color:var(--ink)}
+.callout.good{border-color:var(--good);background:var(--good-soft)}
+.toc{font-size:.875rem;display:grid;gap:6px}
+.toc a{text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line)}
+.toc a:last-child{border:0}
+.status-row,.pager{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.status-row .btn{flex:1 1 auto;min-width:min(100%,140px)}
+.pager .btn{flex:1 1 45%}
+.check label{display:flex;gap:12px;align-items:flex-start;margin:10px 0;padding:10px;border-radius:10px;background:var(--bg);cursor:pointer;min-height:var(--tap)}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex-shrink:0}
+table{width:100%;border-collapse:collapse;background:var(--paper);font-size:.875rem}
+th,td{border-bottom:1px solid var(--line);text-align:left;vertical-align:top;padding:12px}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:var(--bg)}
+.scroll{overflow:auto;border:1px solid var(--line);border-radius:12px;-webkit-overflow-scrolling:touch}
+.topic-cards{display:none;gap:10px;margin-top:16px}
+.topic-card{display:block;text-decoration:none;color:inherit;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow)}
+.topic-card strong{display:block;margin-bottom:4px;color:var(--ink)}
+.topic-card .muted{font-size:.8rem}
+.quick-actions{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.menu-btn{display:none}
+.drawer-backdrop{display:none;opacity:0;transition:opacity .2s}
+.bottom-nav{display:none}
+.sheet{position:fixed;inset:0;z-index:80;pointer-events:none}
+.sheet.show{pointer-events:auto}
+.sheet-backdrop{position:absolute;inset:0;background:rgba(15,23,42,.5);opacity:0;transition:opacity .25s}
+.sheet.show .sheet-backdrop{opacity:1}
+.sheet-panel{position:absolute;left:0;right:0;bottom:0;background:var(--paper);border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom));max-height:70dvh;overflow:auto;transform:translateY(100%);transition:transform .28s ease}
+.sheet.show .sheet-panel{transform:translateY(0)}
+.sheet-panel a,.sheet-panel button{width:100%;text-align:left;margin:4px 0}
+.hidden{display:none !important}
+.desktop-only{display:block}
+.mobile-only{display:none}
+.table-desktop{display:block}
+@media(max-width:900px){
+  :root{--bottom-nav:64px}
+  .desktop-only{display:none !important}
+  .mobile-only{display:block}
+  .table-desktop{display:none}
+  .topic-cards{display:grid}
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;z-index:60;top:0;left:0;height:100dvh;width:min(92vw,340px);padding-top:max(12px,env(safe-area-inset-top));transform:translateX(-105%);transition:transform .25s ease;box-shadow:var(--shadow)}
+  .sidebar.open{transform:none}
+  .menu-btn{display:inline-flex}
+  .drawer-backdrop.show{display:block;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:55;opacity:1}
+  .main{padding:16px 14px calc(24px + var(--bottom-nav))}
+  .progress-wrap{display:none}
+  .progress-mobile{display:block !important;padding:0 14px 8px}
+  .tabs{display:none}
+  .bottom-nav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:45;background:var(--paper);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom));justify-content:space-around;gap:4px;box-shadow:0 -4px 24px rgba(15,23,42,.06)}
+  .bottom-nav a{flex:1;text-decoration:none;color:var(--muted);font-size:.65rem;font-weight:700;text-align:center;padding:6px 4px;border-radius:10px;min-height:var(--tap);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;max-width:72px}
+  .bottom-nav a span{font-size:1.1rem;line-height:1}
+  .bottom-nav a[aria-current="page"]{color:var(--accent-ink);background:var(--soft)}
+  .status-row .btn{min-width:calc(50% - 4px)}
+  .pager{position:sticky;bottom:calc(var(--bottom-nav) + 8px);background:var(--bg);padding:10px 0;margin:20px -4px 0;z-index:5}
+}
+.progress-mobile{display:none}
+@media print {
+  .app-header,.sidebar,.noprint,.status-row,.pager,.drawer-backdrop,.bottom-nav,.sheet{display:none !important}
+  .layout{display:block}
+  .main{max-width:none;padding:0}
+  body{background:#fff;color:#000;padding:0}
+  a{color:#000;text-decoration:none}
+  pre{white-space:pre-wrap}
+}
+@media (prefers-reduced-motion: reduce) {
+  html{scroll-behavior:auto}
+  .track > span,.sidebar,.sheet-panel,.drawer-backdrop{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="app-header" id="appHeader">
+  <div class="bar">
+    <div class="bar-top">
+      <button class="menu-btn icon-btn icon-only noprint" id="menuBtn" type="button" aria-expanded="false" aria-controls="sidebar" title="Lesson menu">☰</button>
+      <a class="brand" href="#dashboard">Upgrade <span>2026</span></a>
+      <div class="progress-wrap noprint" title="Topics marked done">
+        <div class="progress-label"><span>Progress</span><span id="overallPct">0%</span></div>
+        <div class="track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="overallBar"><span id="overallFill"></span></div>
+      </div>
+      <div class="grow"></div>
+      <div class="toolbar noprint desktop-only">
+        <button class="icon-btn" id="themeBtn" type="button" title="Toggle theme">Theme</button>
+        <button class="icon-btn" id="exportBtn" type="button">Export</button>
+        <button class="icon-btn" id="importBtn" type="button">Import</button>
+        <button class="icon-btn" id="printBtn" type="button">Print</button>
+      </div>
+      <button class="icon-btn icon-only mobile-only noprint" id="moreBtn" type="button" aria-expanded="false" aria-controls="moreSheet" title="More">⋯</button>
+      <input id="importFile" class="hidden" type="file" accept="application/json">
+    </div>
+  </div>
+  <div class="progress-mobile noprint">
+    <div class="progress-label"><span>Curriculum</span><span id="overallPctMobile">0%</span></div>
+    <div class="track"><span id="overallFillMobile"></span></div>
+  </div>
+  <nav class="tabs noprint desktop-only" aria-label="Primary">
+    <a href="#dashboard" data-nav="dashboard">Dashboard</a>
+    <a href="#curriculum" data-nav="curriculum">Curriculum</a>
+    <a href="#plan" data-nav="plan">Study plan</a>
+    <a href="#projects" data-nav="projects">Projects</a>
+    <a href="#interviews" data-nav="interviews">Interviews</a>
+    <a href="#context" data-nav="context">Context</a>
+    <a href="#continuity" data-nav="continuity">Continuity</a>
+    <a href="#refs" data-nav="refs">References</a>
+  </nav>
+</header>
+<div class="drawer-backdrop noprint" id="backdrop" aria-hidden="true"></div>
+<div class="layout" id="layout">
+<aside class="sidebar noprint hidden" id="sidebar" aria-label="Curriculum lessons">
+  <div class="sidebar-head">
+    <h2>Lessons</h2>
+    <button type="button" class="icon-btn icon-only mobile-only" id="closeSidebar" aria-label="Close menu">✕</button>
+  </div>
+  <div class="filters">
+    <label>Search<input id="search" type="search" placeholder="Topic name or keyword" autocomplete="off" enterkeyhint="search"></label>
+    <label>Level<select id="filterLevel"><option value="">All levels</option><option>beginner</option><option>intermediate</option><option>advanced</option></select></label>
+    <label>Priority<select id="filterPriority"><option value="">All priorities</option><option value="essential">Essential</option><option value="advanced">Advanced</option><option value="optional">Optional</option></select></label>
+  </div>
+  <div id="navTree"></div>
+  <p class="muted" style="font-size:.8rem;margin-top:12px">Module bars = topics marked done.</p>
+  <div id="moduleBars"></div>
+</aside>
+<main class="main" id="main" tabindex="-1"><div class="main-inner" id="mainInner"></div></main>
+</div>
+<nav class="bottom-nav noprint" aria-label="Mobile navigation">
+  <a href="#dashboard" data-nav="dashboard"><span>⌂</span>Home</a>
+  <a href="#curriculum" data-nav="curriculum"><span>📚</span>Learn</a>
+  <a href="#plan" data-nav="plan"><span>📅</span>Plan</a>
+  <a href="#projects" data-nav="projects"><span>🛠</span>Build</a>
+  <a href="#interviews" data-nav="interviews"><span>💬</span>Q&amp;A</a>
+  <button type="button" class="btn ghost mobile-only" id="moreBtnBottom" style="flex:1;border:0;background:transparent;color:var(--muted);font-size:.65rem;font-weight:700;flex-direction:column;min-height:var(--tap)"><span style="font-size:1.1rem">⋯</span>More</button>
+</nav>
+<div class="sheet noprint" id="moreSheet" aria-hidden="true">
+  <div class="sheet-backdrop" id="sheetBackdrop"></div>
+  <div class="sheet-panel" role="dialog" aria-labelledby="sheetTitle">
+    <h2 id="sheetTitle" style="margin:0 0 12px;font-size:1.1rem">More</h2>
+    <a class="btn ghost" href="#context">My context</a>
+    <a class="btn ghost" href="#continuity">Previous course</a>
+    <a class="btn ghost" href="#refs">References</a>
+    <a class="btn ghost" href="#topic/py-diagnostic">Start diagnostic</a>
+    <button class="btn ghost" type="button" id="themeBtnMobile">Toggle theme</button>
+    <button class="btn ghost" type="button" id="exportBtnMobile">Export progress</button>
+    <button class="btn ghost" type="button" id="importBtnMobile">Import progress</button>
+    <button class="btn ghost" type="button" id="printBtnMobile">Print page</button>
+    <button class="btn ghost" type="button" id="closeSheet">Close</button>
+  </div>
+</div>
+<script id="curriculum-data" type="application/json">__DATA_JSON__</script>
+<script>
+const DATA = JSON.parse(document.getElementById("curriculum-data").textContent);
+const KEY = "upgrade2026-progress-v1";
+const START = "2026-10-18";
+const views = ["dashboard","curriculum","plan","projects","interviews","context","continuity","refs"];
+
+function loadState(){
+  try { return Object.assign(blank(), JSON.parse(localStorage.getItem(KEY) || "{}")); }
+  catch { return blank(); }
+}
+function blank(){
+  return {topics:{}, projects:{}, answers:{}, daily:{}, context:{
+    years:"about 4.5", ctc:"7", target:"20", hours:"5", location:"", notice:"",
+    note:"Laravel, PHP, intermediate Python, SQL, PostgreSQL, Linux, AWS, REST, and production web apps. JavaScript, React/Vue, MySQL, Nginx, Jenkins, and Docker fundamentals are exposure, not a second career."
+  }, theme:"light"};
+}
+let state = loadState();
+function save(){ localStorage.setItem(KEY, JSON.stringify(state)); paintProgress(); }
+function allTopics(){ return DATA.phases.flatMap(p => p.modules.flatMap(m => m.topics.map(t => Object.assign({phase:p.title, module:m.title, moduleId:m.id}, t)))); }
+function topicById(id){ return allTopics().find(t => t.id === id); }
+function statusOf(id){ return (state.topics[id] && state.topics[id].status) || ""; }
+function daysSince(iso){
+  if(!iso) return 0;
+  const a = new Date(iso.slice(0,10)+"T00:00:00");
+  const b = new Date(); b.setHours(0,0,0,0);
+  return Math.floor((b-a)/86400000);
+}
+function revisionDue(id){
+  const row = state.topics[id];
+  if(!row) return false;
+  if(row.status === "revision") return true;
+  if(row.status === "done" && daysSince(row.revisedAt || row.at) >= 14) return true;
+  return false;
+}
+function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function inline(s){
+  let t = esc(s);
+  t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  t = t.replace(/`([^`]+)`/g, '<code>$1</code>');
+  t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  t = t.replace(/#([a-z0-9-]+)/g, (m,id) => topicById(id) ? `<a href="#topic/${id}">${esc(topicById(id).title)}</a>` : m);
+  return t;
+}
+function slug(s){ return String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+
+function setTheme(theme){
+  state.theme = theme;
+  document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
+  save();
+}
+document.documentElement.dataset.theme = state.theme === "dark" ? "dark" : "light";
+
+function paintProgress(){
+  const topics = allTopics();
+  const done = topics.filter(t => statusOf(t.id) === "done").length;
+  const pct = topics.length ? Math.round(done / topics.length * 100) : 0;
+  ["overallPct","overallPctMobile"].forEach(id => { const n = document.getElementById(id); if(n) n.textContent = pct + "% · " + done + "/" + topics.length; });
+  ["overallFill","overallFillMobile"].forEach(id => { const n = document.getElementById(id); if(n) n.style.width = pct + "%"; });
+  const bar = document.getElementById("overallBar");
+  if(bar){ bar.setAttribute("aria-valuenow", String(pct)); bar.setAttribute("aria-label", pct + " percent of topics done"); }
+  const box = document.getElementById("moduleBars");
+  if(!box) return;
+  box.innerHTML = DATA.phases.map(p => p.modules.map(m => {
+    const d = m.topics.filter(t => statusOf(t.id) === "done").length;
+    const pctx = m.topics.length ? Math.round(d / m.topics.length * 100) : 0;
+    return `<div style="margin:8px 0"><div class="progress-label"><span>${esc(m.title)}</span><span>${pctx}%</span></div><div class="track"><span style="width:${pctx}%"></span></div></div>`;
+  }).join("")).join("");
+}
+
+function filteredTopics(){
+  const q = (document.getElementById("search")?.value || "").trim().toLowerCase();
+  const level = document.getElementById("filterLevel")?.value || "";
+  const priority = document.getElementById("filterPriority")?.value || "";
+  return allTopics().filter(t => {
+    if(level && t.level !== level) return false;
+    if(priority && t.priority !== priority) return false;
+    if(!q) return true;
+    const blob = (t.title + " " + t.summary + " " + JSON.stringify(t.blocks)).toLowerCase();
+    return blob.includes(q);
+  });
+}
+
+function currentTopicId(){
+  const raw = location.hash.replace(/^#/, "");
+  if(!raw.startsWith("topic/")) return "";
+  return decodeURIComponent(raw.split("/")[1] || "");
+}
+
+function renderNav(){
+  const allow = new Set(filteredTopics().map(t => t.id));
+  const tree = document.getElementById("navTree");
+  const open = state.openModules || {};
+  const activeId = currentTopicId();
+  tree.innerHTML = DATA.phases.map(p => {
+    const mods = p.modules.map(m => {
+      const items = m.topics.filter(t => allow.has(t.id));
+      if(!items.length) return "";
+      const hasActive = items.some(t => t.id === activeId);
+      const isOpen = hasActive || open[m.id] !== false;
+      return `<div class="mod"><button type="button" aria-expanded="${isOpen}" data-mod="${m.id}">${esc(m.title)}</button>
+        <ul class="${isOpen ? "" : "hidden"}">${items.map(t => {
+          const st = statusOf(t.id);
+          const cur = t.id === activeId ? ' aria-current="true"' : "";
+          return `<li><a href="#topic/${t.id}"${cur}><span class="dot ${st}"></span><span>${esc(t.title)}</span></a></li>`;
+        }).join("")}</ul></div>`;
+    }).join("");
+    return mods ? `<p class="phase-label">${esc(p.title)}</p>${mods}` : "";
+  }).join("");
+  tree.querySelectorAll("[data-mod]").forEach(btn => btn.addEventListener("click", () => {
+    state.openModules = state.openModules || {};
+    const id = btn.dataset.mod;
+    const expanded = btn.getAttribute("aria-expanded") === "true";
+    state.openModules[id] = !expanded;
+    save(); renderNav();
+  }));
+}
+
+function setNavHighlight(name){
+  const map = {dashboard:"dashboard", curriculum:"curriculum", plan:"plan", projects:"projects", interviews:"interviews", context:"context", continuity:"continuity", refs:"refs"};
+  const key = map[name] || "dashboard";
+  document.querySelectorAll("[data-nav]").forEach(el => {
+    const n = el.getAttribute("data-nav");
+    const on = n === key || (key === "curriculum" && n === "curriculum");
+    el.setAttribute("aria-current", on ? "page" : "false");
+  });
+}
+
+function syncHeader(){
+  const h = document.getElementById("appHeader");
+  if(h) document.documentElement.style.setProperty("--header-h", h.offsetHeight + "px");
+}
+
+function route(){
+  const raw = location.hash.replace(/^#/, "") || "dashboard";
+  const [head, encoded] = raw.split("/");
+  const arg = encoded ? decodeURIComponent(encoded) : "";
+  const name = head === "topic" ? "curriculum" : (views.includes(head) ? head : "dashboard");
+  const showLessonNav = name === "curriculum";
+  setNavHighlight(name);
+  document.querySelectorAll(".tabs a").forEach(a => a.setAttribute("aria-current", a.getAttribute("data-nav") === name ? "page" : "false"));
+  const layout = document.getElementById("layout");
+  layout.classList.toggle("solo", !showLessonNav);
+  layout.classList.toggle("with-curriculum", showLessonNav);
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("hidden", !showLessonNav);
+  const menuBtn = document.getElementById("menuBtn");
+  menuBtn.classList.toggle("hidden", !showLessonNav);
+  closeDrawer();
+  closeSheet();
+  const main = document.getElementById("mainInner");
+  if(head === "topic" && topicById(arg)) main.innerHTML = topicHtml(topicById(arg));
+  else if(name === "dashboard") main.innerHTML = dashboardHtml();
+  else if(name === "curriculum") main.innerHTML = curriculumHome();
+  else if(name === "plan") main.innerHTML = planHtml();
+  else if(name === "projects") main.innerHTML = projectsHtml();
+  else if(name === "interviews") main.innerHTML = interviewsHtml(arg);
+  else if(name === "context") main.innerHTML = contextHtml();
+  else if(name === "continuity") main.innerHTML = DATA.continuityHtml;
+  else if(name === "refs") main.innerHTML = refsHtml();
+  else main.innerHTML = dashboardHtml();
+  bind(main);
+  renderNav();
+  paintProgress();
+  syncHeader();
+  window.scrollTo(0, 0);
+  document.getElementById("main").focus({preventScroll:true});
+}
+
+function counts(){
+  const topics = allTopics();
+  return {
+    total: topics.length,
+    done: topics.filter(t => statusOf(t.id)==="done").length,
+    progress: topics.filter(t => statusOf(t.id)==="progress").length,
+    revision: topics.filter(t => revisionDue(t.id)).length,
+    left: topics.filter(t => statusOf(t.id)!=="done").length
+  };
+}
+
+function dashboardHtml(){
+  const c = counts();
+  const essential = allTopics().filter(t => t.priority==="essential");
+  const ed = essential.filter(t => statusOf(t.id)==="done").length;
+  const ep = essential.length ? Math.round(ed/essential.length*100) : 0;
+  const due = allTopics().filter(t => revisionDue(t.id));
+  const day = studyDay();
+  return `<section class="view">
+    <p class="pill">Next lesson is unverified until you pass it</p>
+    <h1>Dashboard</h1>
+    <p class="muted">Nothing is marked done because an old roadmap mentioned it. Progress is only what you set in this browser.</p>
+    <div class="quick-actions noprint">
+      <a class="btn primary" href="#topic/py-diagnostic">Continue: diagnostic</a>
+      <a class="btn" href="#curriculum">Browse curriculum</a>
+      <a class="btn" href="#plan">Today’s plan</a>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="kpi">${c.done}</div><div class="muted">Done</div></div>
+      <div class="card"><div class="kpi">${c.progress}</div><div class="muted">In progress</div></div>
+      <div class="card"><div class="kpi">${c.left}</div><div class="muted">Not done</div></div>
+      <div class="card"><div class="kpi">${c.revision}</div><div class="muted">Revision due</div></div>
+    </div>
+    <h2>Essential path</h2>
+    <div class="progress-label"><span>Essential topics done</span><span>${ep}% · ${ed}/${essential.length}</span></div>
+    <div class="track" style="margin:6px 0 12px"><span style="width:${ep}%"></span></div>
+    ${DATA.phases.map(p => {
+      const ts = p.modules.flatMap(m => m.topics);
+      const d = ts.filter(t => statusOf(t.id)==="done").length;
+      const pct = ts.length ? Math.round(d/ts.length*100) : 0;
+      return `<div class="progress-label"><span>${esc(p.title)}</span><span>${pct}%</span></div><div class="track" style="margin:4px 0 10px"><span style="width:${pct}%"></span></div>`;
+    }).join("")}
+    <div class="callout good"><strong>Study day ${day.n} · ${day.date}.</strong> ${inline(day.text)} Open <a href="#topic/py-diagnostic">the diagnostic</a> if you have not passed it. Applications start in week 3, not after the last project.</div>
+    <h2>Today’s 5-hour checklist</h2>
+    <div class="card" id="dailyCard">${dailyChecks()}</div>
+    <h2>Revision</h2>
+    ${due.length ? `<ul>${due.map(t => `<li><a href="#topic/${t.id}">${esc(t.title)}</a> <span class="muted">${esc(statusOf(t.id)||"done")}</span></li>`).join("")}</ul>` : `<p>No revision flags yet. A done topic asks for revision after 14 days.</p>`}
+    <p class="noprint"><button class="btn" id="resetBtn" type="button">Reset all progress</button></p>
+  </section>`;
+}
+function studyDay(){
+  const start = new Date(START+"T00:00:00");
+  const now = new Date(); now.setHours(0,0,0,0);
+  const n = Math.max(1, Math.floor((now-start)/86400000)+1);
+  const row = DATA.plan.find(d => d.day === Math.min(n, 90)) || DATA.plan[DATA.plan.length-1];
+  return {n, date: now.toLocaleDateString(undefined,{weekday:"long", day:"numeric", month:"short", year:"numeric"}), text: row ? row.focus : "Keep the repo moving."};
+}
+function dailyChecks(){
+  const today = new Date().toISOString().slice(0,10);
+  const saved = state.daily[today] || {};
+  const items = [
+    ["learn","90 min — lesson, official doc plus the page for today"],
+    ["build","90 min — code in the document-assistant repo"],
+    ["drill","45 min — one SQL or DSA pattern, spoken aloud"],
+    ["revise","30 min — explain yesterday without notes"],
+    ["track","15 min — mark the topic and one application note if it is week 3+"]
+  ];
+  return items.map(([id,label]) => `<div class="check"><label><input type="checkbox" data-daily="${id}" ${saved[id]?"checked":""}> ${esc(label)}</label></div>`).join("") + `<p class="muted">Saved for ${esc(today)} only. Yesterday’s list resets.</p>`;
+}
+function curriculumHome(){
+  const rows = filteredTopics();
+  return `<section><h1>Curriculum</h1><p class="muted">${rows.length} topics match your filters. On phone, use the cards below or tap ☰ for the lesson menu.</p>
+    <div class="topic-cards mobile-only">
+    ${rows.map(t => `<a class="topic-card card-interactive" href="#topic/${t.id}"><strong>${esc(t.title)}</strong><span class="muted">${esc(t.module)} · ${esc(t.level)} · ${t.minutes} min</span></a>`).join("")}
+    </div>
+    <div class="scroll table-desktop"><table><thead><tr><th>Topic</th><th>Level</th><th>Priority</th><th>Minutes</th></tr></thead><tbody>
+    ${rows.map(t => `<tr><td><a href="#topic/${t.id}">${esc(t.title)}</a><div class="muted">${esc(t.module)}</div></td><td>${esc(t.level)}</td><td>${esc(t.priority)}</td><td>${t.minutes}</td></tr>`).join("")}
+    </tbody></table></div></section>`;
+}
+function topicHtml(t){
+  const idx = allTopics().findIndex(x => x.id === t.id);
+  const prev = allTopics()[idx-1];
+  const next = allTopics()[idx+1];
+  const toc = (t.blocks||[]).map(b => `<a href="#${slug(b.h)}">${esc(b.h)}</a>`).join("");
+  const body = (t.blocks||[]).map(b => `<section id="${slug(b.h)}"><h2>${esc(b.h)}</h2>
+    ${(b.p||[]).map(p => `<p>${inline(p)}</p>`).join("")}
+    ${b.ul ? `<ul>${b.ul.map(li => `<li>${inline(li)}</li>`).join("")}</ul>` : ""}
+    ${b.ol ? `<ol>${b.ol.map(li => `<li>${inline(li)}</li>`).join("")}</ol>` : ""}
+    ${b.code ? `<pre><code>${esc(b.code)}</code></pre>` : ""}
+    ${b.out ? `<p class="callout"><strong>Expected.</strong> ${inline(b.out)}</p>` : ""}
+  </section>`).join("");
+  const st = statusOf(t.id);
+  return `<article>
+    <p class="muted">${esc(t.phase)} · ${esc(t.module)}</p>
+    <div class="topic-head"><h1 id="${t.id}">${esc(t.title)}</h1></div>
+    <div class="meta">
+      <span class="pill">${esc(t.level)}</span>
+      <span class="pill ${t.priority==="optional"?"opt":""} ${t.priority==="advanced"?"adv":""}">${esc(t.priority)}</span>
+      <span class="pill">${t.minutes} min</span>
+      <span class="pill">ID ${esc(t.id)}</span>
+    </div>
+    <p>${inline(t.summary)}</p>
+    <nav class="toc card" aria-label="On this page">${toc}</nav>
+    <div class="status-row noprint" role="group" aria-label="Topic status">
+      ${["","progress","done","revision"].map(s => `<button class="btn${st===s?" active":""}" data-status="${s}" aria-pressed="${st===s}">${s? (s==="progress"?"In progress": s==="done"?"Done":"Revision") : "Not started"}</button>`).join("")}
+      <button class="btn ghost" type="button" id="revisedBtn">Revised today</button>
+    </div>
+    ${body}
+    <div class="pager noprint">
+      ${prev ? `<a class="btn" href="#topic/${prev.id}">Previous: ${esc(prev.title)}</a>` : ""}
+      ${next ? `<a class="btn" href="#topic/${next.id}">Next: ${esc(next.title)}</a>` : ""}
+      <a class="btn" href="#interviews">Interview tab</a>
+    </div>
+  </article>`;
+}
+function planHtml(){
+  return `<section><h1>Study plan</h1>
+    <div class="callout warn"><strong>Market frame.</strong> ₹20 LPA in 3–6 months is a hiring target for a developer who already ships Laravel and can defend a Python API. It is not guaranteed by finishing this file. ₹30 LPA waits until the document assistant, including retrieval and evals, is explainable. Do not wait for week 24 of the old roadmap before you apply.</div>
+    <h2>Daily 5-hour template</h2>
+    <ol>
+      <li>90 minutes — one topic. Read the official page linked on it, then this lesson.</li>
+      <li>90 minutes — implement that idea in the one repository.</li>
+      <li>30 minutes — break. Leave the desk.</li>
+      <li>45 minutes — SQL or a DSA pattern, with the complexity said out loud.</li>
+      <li>30 minutes — revise yesterday with no notes.</li>
+      <li>15 minutes — checklist, and from week 3 a short application log.</li>
+    </ol>
+    <p>If the code is unfinished, do not open a new theory topic.</p>
+    <h2>First 14 days, from 18 October 2026</h2>
+    ${planTable(DATA.plan.filter(d => d.day <= 14))}
+    <h2>30-day close</h2>
+    ${planTable(DATA.plan.filter(d => d.day > 14 && d.day <= 30))}
+    <h2>Days 31–90</h2>
+    ${planTable(DATA.plan.filter(d => d.day > 30))}
+    <h2>After day 90</h2>
+    <ul>${DATA.later.map(x => `<li>${inline(x)}</li>`).join("")}</ul>
+  </section>`;
+}
+function planTable(rows){
+  return `<div class="scroll"><table><thead><tr><th>Day</th><th>Focus</th><th>Build</th></tr></thead><tbody>${rows.map(d => `<tr><td>${d.day}<div class="muted">${esc(d.date||"")}</div></td><td>${inline(d.focus)}</td><td>${inline(d.build)}</td></tr>`).join("")}</tbody></table></div>`;
+}
+function projectsHtml(){
+  return `<section><h1>Project ladder</h1><p>One repository: a multi-tenant document assistant. Each project is a milestone of that repo. Python for new code. Laravel is the comparison, not the new implementation.</p>
+  ${DATA.projects.map(p => {
+    const st = state.projects[p.id] || "";
+    return `<article class="card" style="margin:12px 0" id="${p.id}"><h2>${esc(p.title)}</h2><p>${inline(p.problem)}</p>
+      <label>Status <select data-project="${p.id}">
+        <option value="" ${st===""?"selected":""}>Not started</option>
+        <option value="progress" ${st==="progress"?"selected":""}>In progress</option>
+        <option value="done" ${st==="done"?"selected":""}>Done</option>
+      </select></label>
+      ${(p.blocks||[]).map(b => `<h3>${esc(b.h)}</h3>${(b.p||[]).map(x=>`<p>${inline(x)}</p>`).join("")}${b.ul?`<ul>${b.ul.map(li=>`<li>${inline(li)}</li>`).join("")}</ul>`:""}${b.code?`<pre><code>${esc(b.code)}</code></pre>`:""}`).join("")}
+    </article>`;
+  }).join("")}
+  <p class="muted">Done ${Object.values(state.projects).filter(s=>s==="done").length} / ${DATA.projects.length}</p>
+  <div class="track"><span style="width:${Math.round(Object.values(state.projects).filter(s=>s==="done").length / DATA.projects.length * 100)}%"></span></div>
+  </section>`;
+}
+function interviewsHtml(cat){
+  const cats = [...new Set(DATA.interviews.map(q => q.cat))];
+  const list = DATA.interviews.filter(q => !cat || q.cat === cat);
+  return `<section><h1>Interview questions</h1>
+    <p>This is a separate tab from the lessons. Write answers in your own words. They stay in this browser.</p>
+    <div class="status-row">${cats.map(c => `<a class="btn" href="#interviews/${encodeURIComponent(c)}">${esc(c)}</a>`).join("")}<a class="btn" href="#interviews">All</a></div>
+    ${list.map(q => `<article class="card" style="margin:10px 0"><h2>${esc(q.q)}</h2><p class="muted">${esc(q.cat)} · ${esc(q.level)}</p><p>${inline(q.hint)}</p>
+      <label class="field">Your answer<textarea data-answer="${esc(q.id)}" rows="5">${esc(state.answers[q.id]||"")}</textarea></label>
+      ${q.topic ? `<p><a href="#topic/${q.topic}">Related lesson</a></p>` : ""}
+    </article>`).join("")}
+  </section>`;
+}
+function contextHtml(){
+  const c = state.context || {};
+  const fields = [["years","Years shipping software"],["ctc","Current CTC, LPA"],["target","Target ask, LPA"],["hours","Hours you can protect"],["location","City / relocation"],["notice","Notice period"]];
+  return `<section><h1>Personal context</h1><p>Edit this. It is the brief the rest of the plan assumes. Saving stays on this computer.</p>
+    ${fields.map(([k,label]) => `<label class="field">${esc(label)}<input data-context="${k}" value="${esc(c[k]||"")}"></label>`).join("")}
+    <label class="field">Notes<textarea data-context="note" rows="6">${esc(c.note||"")}</textarea></label>
+    <div class="callout"><strong>Do not claim</strong> production JWT, OAuth2, OpenAPI, Spring, Kubernetes administration, or a finished RAG system until you have built them. Gomilestone PHP/Laravel from June 2022 is the job. The 2018 stint was training. August 2018–May 2022 needs a true sentence you write yourself.</div>
+    <h2>How this target was chosen</h2>
+    <ul>
+      <li>₹15–20 LPA in months 1–6 is the screen you can reach by pairing shipped Laravel work with a tested FastAPI service.</li>
+      <li>₹20–25 LPA in that same window needs the API deployed and one LLM endpoint you can debug: timeouts, structured output, cost.</li>
+      <li>₹30 LPA is a later conversation, after retrieval, citations, tenant filters, and an eval file are real.</li>
+      <li>ML Engineer preparation is not this track.</li>
+    </ul>
+  </section>`;
+}
+function refsHtml(){
+  return `<section><h1>Official references</h1><p>Primary sources. YouTube can sit beside a doc, not instead of it.</p><ul>${DATA.refs.map(r => `<li><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a> — ${esc(r.why)}</li>`).join("")}</ul>
+    <h2>How to use this file</h2>
+    <ul>
+      <li>Open <code>career_upgrade_master_documentation.html</code> in a browser. No server.</li>
+      <li>Start at the diagnostic. Accenture day 15 is a different course.</li>
+      <li>Export JSON after a study week. Import restores this browser, or another one.</li>
+      <li>To change a lesson later, edit <code>source/</code> and run <code>python3 source/build.py</code> from the Upgrade2026 folder.</li>
+    </ul>
+  </section>`;
+}
+
+function bind(root){
+  root.querySelectorAll("[data-status]").forEach(btn => btn.addEventListener("click", () => {
+    const id = location.hash.split("/")[1];
+    const status = btn.dataset.status;
+    if(!status) delete state.topics[id];
+    else state.topics[id] = Object.assign(state.topics[id]||{}, {status, at: new Date().toISOString()});
+    save(); route();
+  }));
+  const revised = root.querySelector("#revisedBtn");
+  if(revised) revised.addEventListener("click", () => {
+    const id = location.hash.split("/")[1];
+    state.topics[id] = Object.assign(state.topics[id]||{status:"done"}, {revisedAt: new Date().toISOString(), at: (state.topics[id]&&state.topics[id].at) || new Date().toISOString()});
+    save(); route();
+  });
+  root.querySelectorAll("[data-daily]").forEach(box => box.addEventListener("change", () => {
+    const today = new Date().toISOString().slice(0,10);
+    state.daily[today] = state.daily[today] || {};
+    state.daily[today][box.dataset.daily] = box.checked;
+    save();
+  }));
+  root.querySelectorAll("[data-context]").forEach(el => el.addEventListener("change", () => {
+    state.context[el.dataset.context] = el.value;
+    save();
+  }));
+  root.querySelectorAll("[data-project]").forEach(el => el.addEventListener("change", () => {
+    state.projects[el.dataset.project] = el.value;
+    save(); route();
+  }));
+  root.querySelectorAll("[data-answer]").forEach(el => el.addEventListener("input", () => {
+    state.answers[el.dataset.answer] = el.value;
+    save();
+  }));
+  const reset = root.querySelector("#resetBtn");
+  if(reset) reset.addEventListener("click", () => {
+    if(!confirm("Erase topic progress, project ticks, answers, and context stored in this browser?")) return;
+    const theme = state.theme;
+    localStorage.removeItem(KEY);
+    state = blank();
+    state.theme = theme;
+    save(); route();
+  });
+}
+
+document.getElementById("themeBtn").addEventListener("click", () => setTheme(state.theme === "dark" ? "light" : "dark"));
+document.getElementById("exportBtn").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "upgrade2026-progress.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+document.getElementById("importBtn").addEventListener("click", () => document.getElementById("importFile").click());
+document.getElementById("importFile").addEventListener("change", () => {
+  const file = document.getElementById("importFile").files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const next = JSON.parse(String(reader.result));
+      if(!next || typeof next !== "object") throw new Error("bad");
+      state = Object.assign(blank(), next);
+      save(); route();
+    } catch { alert("That file is not an Upgrade 2026 progress export."); }
+  };
+  reader.readAsText(file);
+});
+document.getElementById("printBtn").addEventListener("click", () => window.print());
+["search","filterLevel","filterPriority"].forEach(id => document.getElementById(id).addEventListener("input", () => {
+  renderNav();
+  const h = location.hash.replace(/^#/,"") || "dashboard";
+  if(h === "curriculum" || h.startsWith("topic/")){
+    const inner = document.getElementById("mainInner");
+    if(inner && h === "curriculum") inner.innerHTML = curriculumHome();
+  }
+}));
+function openDrawer(){
+  document.getElementById("sidebar").classList.add("open");
+  document.getElementById("backdrop").classList.add("show");
+  document.getElementById("menuBtn").setAttribute("aria-expanded","true");
+  document.body.style.overflow = "hidden";
+}
+function closeDrawer(){
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("backdrop").classList.remove("show");
+  document.getElementById("menuBtn").setAttribute("aria-expanded","false");
+  document.body.style.overflow = "";
+}
+function openSheet(){
+  const s = document.getElementById("moreSheet");
+  s.classList.add("show");
+  s.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+function closeSheet(){
+  const s = document.getElementById("moreSheet");
+  s.classList.remove("show");
+  s.setAttribute("aria-hidden","true");
+  if(!document.getElementById("sidebar").classList.contains("open")) document.body.style.overflow = "";
+}
+document.getElementById("menuBtn").addEventListener("click", () => {
+  const sb = document.getElementById("sidebar");
+  if(sb.classList.contains("open")) closeDrawer();
+  else openDrawer();
+});
+document.getElementById("closeSidebar")?.addEventListener("click", closeDrawer);
+document.getElementById("backdrop").addEventListener("click", closeDrawer);
+document.getElementById("sidebar").addEventListener("click", e => { if(e.target.closest("a")) closeDrawer(); });
+document.getElementById("moreBtn")?.addEventListener("click", openSheet);
+document.getElementById("moreBtnBottom")?.addEventListener("click", openSheet);
+document.getElementById("sheetBackdrop")?.addEventListener("click", closeSheet);
+document.getElementById("closeSheet")?.addEventListener("click", closeSheet);
+document.querySelectorAll("#moreSheet a").forEach(a => a.addEventListener("click", closeSheet));
+document.getElementById("themeBtnMobile")?.addEventListener("click", () => { setTheme(state.theme === "dark" ? "light" : "dark"); closeSheet(); });
+document.getElementById("exportBtnMobile")?.addEventListener("click", () => { document.getElementById("exportBtn").click(); closeSheet(); });
+document.getElementById("importBtnMobile")?.addEventListener("click", () => { document.getElementById("importBtn").click(); closeSheet(); });
+document.getElementById("printBtnMobile")?.addEventListener("click", () => { window.print(); closeSheet(); });
+document.addEventListener("keydown", e => {
+  if(e.key === "Escape"){ closeDrawer(); closeSheet(); }
+  if(e.key === "/" && document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "TEXTAREA" && document.activeElement.tagName !== "SELECT"){
+    e.preventDefault(); location.hash = "#curriculum"; setTimeout(() => document.getElementById("search")?.focus(), 50);
+  }
+});
+window.addEventListener("resize", syncHeader);
+window.addEventListener("hashchange", route);
+renderNav();
+route();
+</script>
+</body>
+</html>

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Upgrade 2026 — Career documentation</title>
+<style>
+:root {
+  --bg:#eef1f6; --paper:#fff; --ink:#0f172a; --muted:#475569; --line:#d8dee9;
+  --accent:#2563eb; --accent-hover:#1d4ed8; --accent-ink:#1e40af; --soft:#eff6ff;
+  --good:#047857; --good-soft:#ecfdf5; --warn:#9a3412; --warn-soft:#fff7ed;
+  --bad:#b91c1c; --code:#0f172a; --code-bg:#f1f5f9;
+  --shadow:0 4px 24px rgba(15,23,42,.08); --sidebar:300px; --header-h:120px;
+  --bottom-nav:0px; --radius:14px; --tap:44px;
+  color-scheme:light;
+}
+html[data-theme="dark"] {
+  --bg:#0b0f14; --paper:#141a22; --ink:#f1f5f9; --muted:#94a3b8; --line:#2a3441;
+  --accent:#60a5fa; --accent-hover:#93c5fd; --accent-ink:#dbeafe; --soft:#1a2740;
+  --good:#34d399; --good-soft:#052e24; --warn:#fcd34d; --warn-soft:#2a2110;
+  --bad:#fca5a5; --code:#e2e8f0; --code-bg:#0b1020;
+  --shadow:0 8px 32px rgba(0,0,0,.45); color-scheme:dark;
+}
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) {
+    --bg:#0b0f14; --paper:#141a22; --ink:#f1f5f9; --muted:#94a3b8; --line:#2a3441;
+    --accent:#60a5fa; --accent-hover:#93c5fd; --accent-ink:#dbeafe; --soft:#1a2740;
+    --good:#34d399; --good-soft:#052e24; --warn:#fcd34d; --warn-soft:#2a2110;
+    --bad:#fca5a5; --code:#e2e8f0; --code-bg:#0b1020;
+    --shadow:0 8px 32px rgba(0,0,0,.45); color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:calc(var(--bottom-nav) + env(safe-area-inset-bottom,0px))}
+a{color:var(--accent-ink);text-underline-offset:2px}
+a:hover{color:var(--accent)}
+button,input,select,textarea{font:inherit;color:inherit}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+code{background:var(--code-bg);padding:.1em .35em;border-radius:6px}
+.skip{position:absolute;left:-999px;top:0}
+.skip:focus{left:8px;top:8px;background:var(--paper);padding:10px 14px;z-index:100;border-radius:8px;box-shadow:var(--shadow)}
+.app-header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 1px 0 rgba(15,23,42,.04)}
+.bar{display:flex;align-items:center;gap:10px;padding:10px 14px;flex-wrap:wrap}
+.bar-top{width:100%;display:flex;align-items:center;gap:10px}
+.brand{font-weight:800;letter-spacing:-.03em;text-decoration:none;color:var(--ink);font-size:1.05rem}
+.brand span{color:var(--accent)}
+.grow{flex:1;min-width:8px}
+.progress-wrap{flex:1;min-width:120px;max-width:320px}
+.progress-label{display:flex;justify-content:space-between;font-size:.75rem;font-weight:600;color:var(--muted);margin-bottom:4px}
+.track{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.track > span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--good));border-radius:99px;transition:width .35s ease}
+.icon-btn,.btn{min-height:var(--tap);border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:0 14px;cursor:pointer;font-weight:600;font-size:.875rem;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:background .15s,border-color .15s,transform .1s}
+.icon-btn:active,.btn:active{transform:scale(.98)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+html[data-theme="dark"] .btn.primary{color:#0f172a}
+.btn.ghost{background:transparent}
+.btn[aria-pressed="true"],.btn.active{background:var(--soft);border-color:var(--accent);color:var(--accent-ink)}
+.icon-btn.icon-only{width:var(--tap);padding:0}
+.icon-btn:focus-visible,.btn:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.toolbar{display:flex;gap:6px;flex-wrap:wrap}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:0 14px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tabs::-webkit-scrollbar{display:none}
+.tabs a{text-decoration:none;color:var(--muted);font-size:.875rem;font-weight:650;padding:8px 14px;border-radius:999px;white-space:nowrap;border:1px solid transparent}
+.tabs a[aria-current="page"]{background:var(--soft);color:var(--accent-ink);border-color:var(--line)}
+.layout{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);min-height:calc(100dvh - var(--header-h))}
+.layout.solo{grid-template-columns:minmax(0,1fr)}
+.layout.with-curriculum .main-wrap{max-width:920px}
+.sidebar{border-right:1px solid var(--line);background:var(--paper);padding:14px;position:sticky;top:var(--header-h);height:calc(100dvh - var(--header-h));overflow:auto;overscroll-behavior:contain}
+.sidebar-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sidebar-head h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0}
+.filters{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.filters label{font-size:.8rem;font-weight:600;color:var(--muted)}
+.filters input,.filters select,.field input,.field textarea,.field select{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:12px 14px;min-height:var(--tap)}
+.field{display:block;margin:12px 0}
+.phase-label{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:16px 0 6px;padding-top:8px;border-top:1px solid var(--line)}
+.mod{margin-bottom:4px;border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.mod > button{width:100%;text-align:left;background:var(--bg);border:0;padding:12px 14px;cursor:pointer;font-weight:700;font-size:.875rem;display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:var(--tap)}
+.mod > button::after{content:"";width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s;flex-shrink:0}
+.mod > button[aria-expanded="true"]::after{transform:rotate(-135deg);margin-top:4px}
+.mod ul{list-style:none;margin:0;padding:4px 8px 10px;background:var(--paper)}
+.mod a{display:flex;align-items:flex-start;gap:8px;text-decoration:none;color:var(--ink);font-size:.875rem;padding:10px 10px;border-radius:8px;line-height:1.35}
+.mod a:hover,.mod a[aria-current="true"]{background:var(--soft)}
+.mod a[aria-current="true"]{font-weight:700;color:var(--accent-ink)}
+.dot{width:10px;height:10px;border-radius:99px;margin-top:5px;flex-shrink:0;background:var(--line)}
+.dot.progress{background:var(--warn)} .dot.done{background:var(--good)} .dot.revision{background:var(--bad)}
+.main{padding:20px 20px 48px;width:100%}
+.main-inner{max-width:920px;margin:0 auto}
+.hero h1,.main h1{font-size:clamp(1.6rem,4.5vw,2.25rem);line-height:1.2;letter-spacing:-.03em;margin:0 0 10px}
+.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.card-interactive{transition:transform .15s,box-shadow .15s}
+.card-interactive:active{transform:scale(.99)}
+.kpi{font-size:2rem;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+h2{font-size:1.25rem;margin:28px 0 10px;letter-spacing:-.02em}
+h3{font-size:1.05rem;margin:18px 0 8px}
+.topic-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
+.meta{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.pill{font-size:.7rem;font-weight:700;border-radius:999px;padding:4px 10px;background:var(--soft);color:var(--accent-ink)}
+.pill.opt{background:var(--warn-soft);color:var(--warn)}
+.pill.adv{background:#ede9fe;color:#5b21b6}
+html[data-theme="dark"] .pill.adv{background:#312e81;color:#e9d5ff}
+pre{background:var(--code-bg);color:var(--code);padding:14px 16px;border-radius:12px;overflow:auto;border:1px solid var(--line);font-size:.8rem;line-height:1.5;-webkit-overflow-scrolling:touch}
+.callout{border-left:4px solid var(--accent);background:var(--soft);padding:14px 16px;border-radius:12px;margin:14px 0;line-height:1.55}
+.callout.warn{border-color:var(--warn);background:var(--warn-soft);color:var(--ink)}
+.callout.good{border-color:var(--good);background:var(--good-soft)}
+.toc{font-size:.875rem;display:grid;gap:6px}
+.toc a{text-decoration:none;padding:6px 0;border-bottom:1px solid var(--line)}
+.toc a:last-child{border:0}
+.status-row,.pager{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.status-row .btn{flex:1 1 auto;min-width:min(100%,140px)}
+.pager .btn{flex:1 1 45%}
+.check label{display:flex;gap:12px;align-items:flex-start;margin:10px 0;padding:10px;border-radius:10px;background:var(--bg);cursor:pointer;min-height:var(--tap)}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex-shrink:0}
+table{width:100%;border-collapse:collapse;background:var(--paper);font-size:.875rem}
+th,td{border-bottom:1px solid var(--line);text-align:left;vertical-align:top;padding:12px}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);background:var(--bg)}
+.scroll{overflow:auto;border:1px solid var(--line);border-radius:12px;-webkit-overflow-scrolling:touch}
+.topic-cards{display:none;gap:10px;margin-top:16px}
+.topic-card{display:block;text-decoration:none;color:inherit;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--paper);box-shadow:var(--shadow)}
+.topic-card strong{display:block;margin-bottom:4px;color:var(--ink)}
+.topic-card .muted{font-size:.8rem}
+.quick-actions{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.menu-btn{display:none}
+.drawer-backdrop{display:none;opacity:0;transition:opacity .2s}
+.bottom-nav{display:none}
+.sheet{position:fixed;inset:0;z-index:80;pointer-events:none}
+.sheet.show{pointer-events:auto}
+.sheet-backdrop{position:absolute;inset:0;background:rgba(15,23,42,.5);opacity:0;transition:opacity .25s}
+.sheet.show .sheet-backdrop{opacity:1}
+.sheet-panel{position:absolute;left:0;right:0;bottom:0;background:var(--paper);border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom));max-height:70dvh;overflow:auto;transform:translateY(100%);transition:transform .28s ease}
+.sheet.show .sheet-panel{transform:translateY(0)}
+.sheet-panel a,.sheet-panel button{width:100%;text-align:left;margin:4px 0}
+.hidden{display:none !important}
+.desktop-only{display:block}
+.mobile-only{display:none}
+.table-desktop{display:block}
+@media(max-width:900px){
+  :root{--bottom-nav:64px}
+  .desktop-only{display:none !important}
+  .mobile-only{display:block}
+  .table-desktop{display:none}
+  .topic-cards{display:grid}
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:fixed;z-index:60;top:0;left:0;height:100dvh;width:min(92vw,340px);padding-top:max(12px,env(safe-area-inset-top));transform:translateX(-105%);transition:transform .25s ease;box-shadow:var(--shadow)}
+  .sidebar.open{transform:none}
+  .menu-btn{display:inline-flex}
+  .drawer-backdrop.show{display:block;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:55;opacity:1}
+  .main{padding:16px 14px calc(24px + var(--bottom-nav))}
+  .progress-wrap{display:none}
+  .progress-mobile{display:block !important;padding:0 14px 8px}
+  .tabs{display:none}
+  .bottom-nav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:45;background:var(--paper);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom));justify-content:space-around;gap:4px;box-shadow:0 -4px 24px rgba(15,23,42,.06)}
+  .bottom-nav a{flex:1;text-decoration:none;color:var(--muted);font-size:.65rem;font-weight:700;text-align:center;padding:6px 4px;border-radius:10px;min-height:var(--tap);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;max-width:72px}
+  .bottom-nav a span{font-size:1.1rem;line-height:1}
+  .bottom-nav a[aria-current="page"]{color:var(--accent-ink);background:var(--soft)}
+  .status-row .btn{min-width:calc(50% - 4px)}
+  .pager{position:sticky;bottom:calc(var(--bottom-nav) + 8px);background:var(--bg);padding:10px 0;margin:20px -4px 0;z-index:5}
+}
+.progress-mobile{display:none}
+@media print {
+  .app-header,.sidebar,.noprint,.status-row,.pager,.drawer-backdrop,.bottom-nav,.sheet{display:none !important}
+  .layout{display:block}
+  .main{max-width:none;padding:0}
+  body{background:#fff;color:#000;padding:0}
+  a{color:#000;text-decoration:none}
+  pre{white-space:pre-wrap}
+}
+@media (prefers-reduced-motion: reduce) {
+  html{scroll-behavior:auto}
+  .track > span,.sidebar,.sheet-panel,.drawer-backdrop{transition:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="app-header" id="appHeader">
+  <div class="bar">
+    <div class="bar-top">
+      <button class="menu-btn icon-btn icon-only noprint" id="menuBtn" type="button" aria-expanded="false" aria-controls="sidebar" title="Lesson menu">☰</button>
+      <a class="brand" href="#dashboard">Upgrade <span>2026</span></a>
+      <div class="progress-wrap noprint" title="Topics marked done">
+        <div class="progress-label"><span>Progress</span><span id="overallPct">0%</span></div>
+        <div class="track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="overallBar"><span id="overallFill"></span></div>
+      </div>
+      <div class="grow"></div>
+      <div class="toolbar noprint desktop-only">
+        <button class="icon-btn" id="themeBtn" type="button" title="Toggle theme">Theme</button>
+        <button class="icon-btn" id="exportBtn" type="button">Export</button>
+        <button class="icon-btn" id="importBtn" type="button">Import</button>
+        <button class="icon-btn" id="printBtn" type="button">Print</button>
+      </div>
+      <button class="icon-btn icon-only mobile-only noprint" id="moreBtn" type="button" aria-expanded="false" aria-controls="moreSheet" title="More">⋯</button>
+      <input id="importFile" class="hidden" type="file" accept="application/json">
+    </div>
+  </div>
+  <div class="progress-mobile noprint">
+    <div class="progress-label"><span>Curriculum</span><span id="overallPctMobile">0%</span></div>
+    <div class="track"><span id="overallFillMobile"></span></div>
+  </div>
+  <nav class="tabs noprint desktop-only" aria-label="Primary">
+    <a href="#dashboard" data-nav="dashboard">Dashboard</a>
+    <a href="#curriculum" data-nav="curriculum">Curriculum</a>
+    <a href="#plan" data-nav="plan">Study plan</a>
+    <a href="#projects" data-nav="projects">Projects</a>
+    <a href="#interviews" data-nav="interviews">Interviews</a>
+    <a href="#context" data-nav="context">Context</a>
+    <a href="#continuity" data-nav="continuity">Continuity</a>
+    <a href="#refs" data-nav="refs">References</a>
+  </nav>
+</header>
+<div class="drawer-backdrop noprint" id="backdrop" aria-hidden="true"></div>
+<div class="layout" id="layout">
+<aside class="sidebar noprint hidden" id="sidebar" aria-label="Curriculum lessons">
+  <div class="sidebar-head">
+    <h2>Lessons</h2>
+    <button type="button" class="icon-btn icon-only mobile-only" id="closeSidebar" aria-label="Close menu">✕</button>
+  </div>
+  <div class="filters">
+    <label>Search<input id="search" type="search" placeholder="Topic name or keyword" autocomplete="off" enterkeyhint="search"></label>
+    <label>Level<select id="filterLevel"><option value="">All levels</option><option>beginner</option><option>intermediate</option><option>advanced</option></select></label>
+    <label>Priority<select id="filterPriority"><option value="">All priorities</option><option value="essential">Essential</option><option value="advanced">Advanced</option><option value="optional">Optional</option></select></label>
+  </div>
+  <div id="navTree"></div>
+  <p class="muted" style="font-size:.8rem;margin-top:12px">Module bars = topics marked done.</p>
+  <div id="moduleBars"></div>
+</aside>
+<main class="main" id="main" tabindex="-1"><div class="main-inner" id="mainInner"></div></main>
+</div>
+<nav class="bottom-nav noprint" aria-label="Mobile navigation">
+  <a href="#dashboard" data-nav="dashboard"><span>⌂</span>Home</a>
+  <a href="#curriculum" data-nav="curriculum"><span>📚</span>Learn</a>
+  <a href="#plan" data-nav="plan"><span>📅</span>Plan</a>
+  <a href="#projects" data-nav="projects"><span>🛠</span>Build</a>
+  <a href="#interviews" data-nav="interviews"><span>💬</span>Q&amp;A</a>
+  <button type="button" class="btn ghost mobile-only" id="moreBtnBottom" style="flex:1;border:0;background:transparent;color:var(--muted);font-size:.65rem;font-weight:700;flex-direction:column;min-height:var(--tap)"><span style="font-size:1.1rem">⋯</span>More</button>
+</nav>
+<div class="sheet noprint" id="moreSheet" aria-hidden="true">
+  <div class="sheet-backdrop" id="sheetBackdrop"></div>
+  <div class="sheet-panel" role="dialog" aria-labelledby="sheetTitle">
+    <h2 id="sheetTitle" style="margin:0 0 12px;font-size:1.1rem">More</h2>
+    <a class="btn ghost" href="#context">My context</a>
+    <a class="btn ghost" href="#continuity">Previous course</a>
+    <a class="btn ghost" href="#refs">References</a>
+    <a class="btn ghost" href="#topic/py-diagnostic">Start diagnostic</a>
+    <button class="btn ghost" type="button" id="themeBtnMobile">Toggle theme</button>
+    <button class="btn ghost" type="button" id="exportBtnMobile">Export progress</button>
+    <button class="btn ghost" type="button" id="importBtnMobile">Import progress</button>
+    <button class="btn ghost" type="button" id="printBtnMobile">Print page</button>
+    <button class="btn ghost" type="button" id="closeSheet">Close</button>
+  </div>
+</div>
+<script id="curriculum-data" type="application/json">{"phases": [{"title": "1 · Python", "modules": [{"id": "py-start", "title": "Start from the files you already have", "topics": [{"id": "py-diagnostic", "title": "Diagnostic: do not restart Python from print()", "level": "beginner", "priority": "essential", "minutes": 45, "summary": "Prove what you already have, then skip ahead. This is the first lesson on 18 October 2026.", "blocks": [{"h": "Prerequisites", "p": ["A Python 3 interpreter. Your files on this Mac: abstraction.py, abstractex.py, script.py, knapsackzeroonebyset.py."]}, {"h": "What it is", "p": ["A short closed-book check. It is not a day of new theory. Accenture Days 1–14 were a PHP sprint; this diagnostic is the first Python lesson in Upgrade 2026."]}, {"h": "Why it exists", "p": ["Restarting at installation wastes the only 90 days that matter for a ₹20 LPA screen. The files on disk already show a class, an edit-distance table, and a knapsack stub. They also show that ABC and a working knapsack are unfinished."]}, {"h": "How it works", "p": ["Sit without notes. Type four small programs. Mark this topic done only if all four are fluent. If one stalls, mark this topic revision and open #py-classes."]}, {"h": "Beginner example", "code": "class Loan:\n    def __init__(self, principal: int) -> None:\n        self.principal = principal\n\n    def describe(self) -> str:\n        return f\"principal={self.principal}\"\n\n    @staticmethod\n    def currency() -> str:\n        return \"INR\"\n\nprint(Loan(50000).describe())\nprint(Loan.currency())\nprint([1, 2] is [1, 2])\nprint((1, 2) == (1, 2))\n\ndef min_edit_distance(w1: str, w2: str) -> int:\n    m, n = len(w1), len(w2)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    for i in range(1, m + 1):\n        dp[i][0] = i\n    for j in range(1, n + 1):\n        dp[0][j] = j\n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            if w1[i - 1] == w2[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1]\n            else:\n                dp[i][j] = 1 + min(dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1])\n    return dp[m][n]\n\nprint(min_edit_distance(\"cat\", \"cats\"))", "out": "principal=50000 then INR then False then True then 1. The last number matches the run of your existing script.py."}, {"h": "Common mistakes", "ul": ["Ticking this done because the public v4 roadmap listed Python in week 1.", "Calling the 2018 training four years of Python. It was Core PHP training.", "Skipping ABC forever because abstractex.py is commented out. That topic stays open until you write a working ABC."]}, {"h": "Exercise", "p": ["Without this page, write the four programs in a new file. Time yourself. Over 20 minutes on any one item means #py-classes first."]}, {"h": "Implementation task", "p": ["Create a folder document-assistant/ and a tests/ folder. Do not start a second repo."]}, {"h": "Interview prompts", "ul": ["How would you explain four years of Laravel and still be honest that Python is growing?"]}, {"h": "References", "ul": ["[Python tutorial](https://docs.python.org/3/tutorial/)"]}, {"h": "Checklist", "ul": ["Four programs typed without copy-paste", "Fluent path: continue to #py-functions", "Stuck path: #py-classes then retake this"]}, {"h": "Next", "p": ["#py-env if the interpreter is missing. Otherwise #py-functions if fluent, #py-classes if not."]}]}, {"id": "py-env", "title": "Interpreter, versions, venv, pip, project layout", "level": "beginner", "priority": "essential", "minutes": 50, "summary": "The same hygiene Composer already taught you, in Python.", "blocks": [{"h": "Prerequisites", "p": ["#py-diagnostic or a working python3."]}, {"h": "What it is", "p": ["Python 3.12+ interpreter, REPL, scripts, virtual environments, pip, and a src-or-package layout."]}, {"h": "Why it exists", "p": ["Global pip install is how two projects fight. Laravel already isolated PHP with Composer; venv is that isolation."]}, {"h": "How it works", "p": ["python3 -m venv .venv, then source .venv/bin/activate, then python -m pip install. Pin versions. Never commit .venv."]}, {"h": "Beginner example", "code": "# pyproject.toml (excerpt)\n[project]\nname = \"document-assistant\"\nversion = \"0.1.0\"\nrequires-python = \">=3.12\"\ndependencies = []\n\n[project.optional-dependencies]\ndev = [\"pytest>=8\"]"}, {"h": "Common mistakes", "ul": ["python vs python3 on macOS", "pip install as a user package outside venv", "Checking venv into git"]}, {"h": "Compared with a neighbour", "p": ["composer.json is pyproject.toml. vendor/ is .venv. composer.lock is a lock file you will add later with uv or pip-tools."]}, {"h": "Implementation task", "p": ["Create .venv, add .gitignore for it, write README with python -m pytest."]}, {"h": "References", "ul": ["[venv](https://docs.python.org/3/library/venv.html)", "[Installing packages](https://packaging.python.org/en/latest/tutorials/installing-packages/)"]}, {"h": "Next", "p": ["#py-syntax"]}]}]}, {"id": "py-core", "title": "Language you must speak without notes", "topics": [{"id": "py-syntax", "title": "Syntax, names, types, mutability, truthiness", "level": "beginner", "priority": "essential", "minutes": 55, "summary": "Indentation is the block. Identity is not equality. Empty collections are false.", "blocks": [{"h": "What it is", "p": ["Comments, names, built-in types, mutability, is vs ==, conversion, operators, truthiness."]}, {"h": "Why it exists", "p": ["A Laravel if ($user) check and a Python if user: check fail on different empty values. Interviews start here because bugs start here."]}, {"h": "Beginner example", "code": "a = [1]\nb = a\nb.append(2)\nprint(a)          # [1, 2] — same list\nprint(a == [1, 2])\nprint(a is [1, 2])  # False — different objects\nprint(bool(\"\"), bool([]), bool(0), bool(\"0\"))", "out": "[1, 2] then True then False then False False False True."}, {"h": "Common mistakes", "ul": ["Using is for string or number equality", "Mutating a default list argument", "Treating '0' as empty"]}, {"h": "Implementation task", "p": ["Write five assert lines that fail if you mix is and ==."]}, {"h": "References", "ul": ["[Data model](https://docs.python.org/3/reference/datamodel.html)"]}, {"h": "Next", "p": ["#py-strings"]}]}, {"id": "py-strings", "title": "Strings, slicing, f-strings, Unicode, regex", "level": "beginner", "priority": "essential", "minutes": 50, "summary": "Text is Unicode. Slicing copies. Regex is a tool, not the first parser.", "blocks": [{"h": "Beginner example", "code": "import re\nname = \"Kanhaiya\"\nprint(name[0:3])\nprint(f\"{name} pays {1500.5:.2f}\")\nprint(re.fullmatch(r\"[A-Z]{5}[0-9]{4}[A-Z]\", \"ABCDE1234F\") is not None)", "out": "Kan then Kanhaiya pays 1500.50 then True."}, {"h": "Backend or product example", "p": ["PAN-shaped validation belongs in a function with tests, the same way you already validate on Ugro. Do not paste client PAN numbers into a public repo."]}, {"h": "Common mistakes", "ul": ["Calling str.replace and ignoring that strings are immutable", "Bytes treated as text"]}, {"h": "References", "ul": ["[re](https://docs.python.org/3/library/re.html)"]}, {"h": "Next", "p": ["#py-collections"]}]}, {"id": "py-collections", "title": "List, tuple, set, dict, comprehensions, copying", "level": "beginner", "priority": "essential", "minutes": 55, "summary": "Lists grow. Tuples are records. Sets and dicts hash. deepcopy is rare.", "blocks": [{"h": "Beginner example", "code": "from copy import copy, deepcopy\nroles = {\"admin\", \"ops\"}\nloan = {\"id\": \"L-1\", \"tags\": [\"overdue\"]}\nshallow = copy(loan)\ndeep = deepcopy(loan)\nloan[\"tags\"].append(\"legal\")\nprint(shallow[\"tags\"], deep[\"tags\"])\nprint({r.upper() for r in roles})", "out": "['overdue', 'legal'] ['overdue'] then {'ADMIN', 'OPS'}."}, {"h": "Performance", "p": ["Average dict/set lookup is O(1). Membership in a list is O(n). That is why a role check should not scan a long list in a hot path."]}, {"h": "References", "ul": ["[collections](https://docs.python.org/3/library/collections.html)"]}, {"h": "Next", "p": ["#py-control"]}]}, {"id": "py-control", "title": "Conditionals, loops, iterables, enumerate, zip", "level": "beginner", "priority": "essential", "minutes": 40, "summary": "for x in items is the default. range is for indexes you actually need.", "blocks": [{"h": "Beginner example", "code": "status = \"PAID\"\nmatch status:\n    case \"PAID\" | \"SETTLED\":\n        print(\"closed\")\n    case _:\n        print(\"open\")\nfor i, name in enumerate([\"Religare\", \"Ugro\"], start=1):\n    print(i, name)", "out": "closed then 1 Religare then 2 Ugro."}, {"h": "Compared with a neighbour", "p": ["PHP foreach is this for. match is PHP 8 match."]}, {"h": "Next", "p": ["#py-functions"]}]}, {"id": "py-functions", "title": "Functions, scope, closures, *args, lambdas", "level": "intermediate", "priority": "essential", "minutes": 60, "summary": "If the diagnostic was fluent, this is the same-day continuation. Default arguments are bound once.", "blocks": [{"h": "Why it exists", "p": ["Laravel controllers already inject services. Python functions that close over config are the same idea, and the default-list bug is the first interview trap."]}, {"h": "Beginner example", "code": "def add_tag(tag: str, bucket: list[str] | None = None) -> list[str]:\n    if bucket is None:\n        bucket = []\n    bucket.append(tag)\n    return bucket\n\nprint(add_tag(\"a\"))\nprint(add_tag(\"b\"))\n\ndef make_multiplier(n: int):\n    def inner(x: int) -> int:\n        return x * n\n    return inner\n\ndouble = make_multiplier(2)\nprint(double(21))", "out": "['a'] then ['b'] then 42. If bucket=[] were the default, the second call would print ['a', 'b']."}, {"h": "Common mistakes", "ul": ["Mutable default arguments", "Using a lambda for a multi-line function", "Returning None by accident after a print"]}, {"h": "Implementation task", "p": ["Write a retry helper that takes a callable and a max_tries integer. Test that it stops after three failures."]}, {"h": "Interview prompts", "ul": ["What is a closure?", "Why is def f(x=[]): a bug?"]}, {"h": "References", "ul": ["[Defining functions](https://docs.python.org/3/tutorial/controlflow.html#defining-functions)"]}, {"h": "Next", "p": ["#py-decorators"]}]}, {"id": "py-decorators", "title": "Decorators, generators, context managers", "level": "intermediate", "priority": "essential", "minutes": 70, "summary": "A decorator is a callable that wraps a callable. yield pauses. with closes the file even on error.", "blocks": [{"h": "Beginner example", "code": "from functools import wraps\nfrom contextlib import contextmanager\n\ndef logged(fn):\n    @wraps(fn)\n    def wrapper(*args, **kwargs):\n        print(\"call\", fn.__name__)\n        return fn(*args, **kwargs)\n    return wrapper\n\n@logged\ndef ping() -> str:\n    return \"ok\"\n\ndef numbers():\n    yield 1\n    yield 2\n\n@contextmanager\ndef fake_tx():\n    print(\"begin\")\n    try:\n        yield\n        print(\"commit\")\n    except Exception:\n        print(\"rollback\")\n        raise\n\nprint(ping())\nprint(list(numbers()))\nwith fake_tx():\n    pass", "out": "call ping then ok then [1, 2] then begin then commit."}, {"h": "Compared with a neighbour", "p": ["Laravel middleware wraps a request. @app.get in FastAPI is a decorator. Eloquent scopes are not generators; Python generators are pull-based streams."]}, {"h": "Implementation task", "p": ["Write a timer decorator that prints milliseconds. Wrap a dummy PDF parse function."]}, {"h": "References", "ul": ["[functools.wraps](https://docs.python.org/3/library/functools.html#functools.wraps)", "[contextlib](https://docs.python.org/3/library/contextlib.html)"]}, {"h": "Next", "p": ["#py-classes"]}]}]}, {"id": "py-oop-quality", "title": "Objects, types, tests, packaging", "topics": [{"id": "py-classes", "title": "Classes, methods, inheritance, composition, ABC", "level": "intermediate", "priority": "essential", "minutes": 70, "summary": "Your Car class in abstraction.py is a start. abstractex.py is commented out, so ABC is not done.", "blocks": [{"h": "What it is", "p": ["instance vs class vs static methods, inheritance, composition, MRO, properties, dataclasses, protocols, dunder methods, ABC."]}, {"h": "Why it exists", "p": ["PaymentGateway as an interface is the same story as Day 4 of the Accenture PHP plan. Python uses ABC or Protocol."]}, {"h": "Beginner example", "code": "from abc import ABC, abstractmethod\nfrom dataclasses import dataclass\n\nclass PaymentGateway(ABC):\n    @abstractmethod\n    def charge(self, paise: int) -> str: ...\n\nclass FakeRazorpay(PaymentGateway):\n    def charge(self, paise: int) -> str:\n        return f\"ok:{paise}\"\n\n@dataclass\nclass Charge:\n    paise: int\n    currency: str = \"INR\"\n\nprint(FakeRazorpay().charge(100))\nprint(Charge(100))", "out": "ok:100 then Charge(paise=100, currency='INR')."}, {"h": "Implementation task", "p": ["Uncomment and finish abstractex.py as a real ABC with two shapes, plus a pytest file. Leave the original file on disk; copy the idea into the new repo."]}, {"h": "Interview prompts", "ul": ["ABC versus Protocol", "When composition beats inheritance"]}, {"h": "References", "ul": ["[abc](https://docs.python.org/3/library/abc.html)", "[dataclasses](https://docs.python.org/3/library/dataclasses.html)"]}, {"h": "Next", "p": ["#py-exceptions"]}]}, {"id": "py-exceptions", "title": "Exceptions, chaining, logging, cleanup", "level": "intermediate", "priority": "essential", "minutes": 45, "summary": "Raise exceptions for contract failures. Log with structure. Never swallow and return None silently on money paths.", "blocks": [{"h": "Beginner example", "code": "import logging\nlogging.basicConfig(level=logging.INFO)\nlog = logging.getLogger(\"assistant\")\n\nclass TenantMismatch(Exception):\n    pass\n\ndef load_doc(doc_org: str, user_org: str) -> None:\n    if doc_org != user_org:\n        raise TenantMismatch(\"cross-tenant read\")\n\ntry:\n    load_doc(\"A\", \"B\")\nexcept TenantMismatch:\n    log.exception(\"blocked\")\n    raise"}, {"h": "Compared with a neighbour", "p": ["Laravel's renderable exceptions and report() are this plus HTTP mapping, which FastAPI does in handlers."]}, {"h": "References", "ul": ["[logging](https://docs.python.org/3/library/logging.html)"]}, {"h": "Next", "p": ["#py-typing"]}]}, {"id": "py-typing", "title": "Type hints, unions, TypedDict, Protocols, checking", "level": "intermediate", "priority": "essential", "minutes": 50, "summary": "Hints are for humans and checkers. Runtime stays dynamic unless you use Pydantic.", "blocks": [{"h": "Beginner example", "code": "from typing import TypedDict, Literal\n\nclass Chunk(TypedDict):\n    text: str\n    tenant_id: str\n    source: Literal[\"pdf\", \"html\"]\n\ndef words(chunk: Chunk) -> int:\n    return len(chunk[\"text\"].split())"}, {"h": "References", "ul": ["[typing](https://docs.python.org/3/library/typing.html)"]}, {"h": "Next", "p": ["#py-stdlib"]}]}, {"id": "py-stdlib", "title": "Files, paths, JSON, env, dates, decimal, csv", "level": "beginner", "priority": "essential", "minutes": 50, "summary": "Money is Decimal or integer paise. Time is timezone-aware. Secrets are environment, not source.", "blocks": [{"h": "Beginner example", "code": "from decimal import Decimal, ROUND_HALF_UP\nfrom datetime import datetime, timezone\namount = Decimal(\"10.2\").quantize(Decimal(\"0.01\"), rounding=ROUND_HALF_UP)\nnow = datetime.now(timezone.utc)\nprint(amount, now.tzinfo)", "out": "10.20 and datetime.timezone.utc. Never float for balances. That rule already lived on Accenture Day 13."}, {"h": "References", "ul": ["[decimal](https://docs.python.org/3/library/decimal.html)", "[datetime](https://docs.python.org/3/library/datetime.html)"]}, {"h": "Next", "p": ["#py-pytest"]}]}, {"id": "py-pytest", "title": "pytest, fixtures, parametrize, mocks, coverage", "level": "intermediate", "priority": "essential", "minutes": 60, "summary": "PHPUnit is pytest. A test is a function named test_*. Assertions are assert.", "blocks": [{"h": "Beginner example", "code": "import pytest\n\n@pytest.mark.parametrize(\"a,b,expected\", [(\"cat\", \"cats\", 1), (\"\", \"a\", 1)])\ndef test_distance(a, b, expected):\n    assert len(b) - len(a) == expected or a != b\n\ndef test_tenant_guard():\n    with pytest.raises(PermissionError):\n        raise PermissionError(\"org B\")"}, {"h": "Implementation task", "p": ["Add pytest.ini and two tests for the retry helper from #py-functions."]}, {"h": "References", "ul": ["[pytest](https://docs.pytest.org/)"]}, {"h": "Next", "p": ["#py-packaging"]}]}, {"id": "py-packaging", "title": "Modules, packages, pyproject, lock files", "level": "intermediate", "priority": "essential", "minutes": 40, "summary": "__name__ == '__main__' is a script. A package has __init__.py or is a src layout with pyproject.toml.", "blocks": [{"h": "References", "ul": ["[Packaging](https://packaging.python.org/)"]}, {"h": "Next", "p": ["#py-quality"]}]}, {"id": "py-quality", "title": "SOLID, patterns, DI, clean boundaries", "level": "intermediate", "priority": "essential", "minutes": 45, "summary": "You already practiced SOLID on Accenture Day 4 in PHP. Repeat it in Python: controller thin, domain in services, I/O at the edge.", "blocks": [{"h": "Interview prompts", "ul": ["Give a Laravel example of DIP and the Python equivalent."]}, {"h": "Next", "p": ["#py-async"]}]}, {"id": "py-async", "title": "Threads, processes, GIL, asyncio", "level": "advanced", "priority": "essential", "minutes": 70, "summary": "The GIL lets one bytecode thread run at a time. asyncio is for waiting on sockets, not for crunching numbers.", "blocks": [{"h": "Beginner example", "code": "import asyncio\n\nasync def fetch_fake(n: int) -> int:\n    await asyncio.sleep(0.01)\n    return n\n\nasync def main() -> None:\n    print(await asyncio.gather(fetch_fake(1), fetch_fake(2)))\n\nasyncio.run(main())", "out": "[1, 2] after both sleeps overlap."}, {"h": "When to use it", "p": ["Use asyncio for outbound HTTP. Use a process pool for CPU-heavy PDF parsing. Use a queue worker for work that should survive a request."]}, {"h": "References", "ul": ["[asyncio](https://docs.python.org/3/library/asyncio.html)"]}, {"h": "Next", "p": ["#py-perf"]}]}, {"id": "py-perf", "title": "Memory, profiling, common slow spots", "level": "advanced", "priority": "advanced", "minutes": 40, "summary": "Profile before rewriting. list.append in a loop is fine; concatenating huge strings in a loop is not.", "blocks": [{"h": "References", "ul": ["[profile](https://docs.python.org/3/library/profile.html)"]}, {"h": "Next", "p": ["#dsa-big-o"]}]}]}]}, {"title": "2 · Data structures and algorithms", "modules": [{"id": "dsa-core", "title": "Complexity and core structures", "topics": [{"id": "dsa-big-o", "title": "Time and space: Big O, Theta, Omega", "level": "beginner", "priority": "essential", "minutes": 40, "summary": "Interviews want the growth class, not a proof course. Say the worst case, then the typical case if they differ.", "blocks": [{"h": "What it is", "p": ["Big O is an upper bound. Theta is tight. Omega is a lower bound. Practical talk is O(1), O(log n), O(n), O(n log n), O(n²), O(2^n)."]}, {"h": "Why it exists", "p": ["A nested loop on a loan list is why Religare needed indexes. Same language applies to Python."]}, {"h": "Beginner example", "code": "def has_role(roles: list[str], needle: str) -> bool:\n    return needle in roles  # O(n)\n\ndef has_role_set(roles: set[str], needle: str) -> bool:\n    return needle in roles  # average O(1)"}, {"h": "Interview prompts", "ul": ["Is binary search always faster than linear? Only when n is large and the array is sorted."]}, {"h": "References", "ul": ["[TimeComplexity](https://wiki.python.org/moin/TimeComplexity)"]}, {"h": "Next", "p": ["#dsa-array"]}]}, {"id": "dsa-array", "title": "Arrays, lists, strings as sequences", "level": "beginner", "priority": "essential", "minutes": 40, "summary": "Python list is a dynamic array. Index is O(1). Insert at 0 is O(n). Strings are immutable sequences.", "blocks": [{"h": "Why it exists", "p": ["Most coding screens start here. Your Laravel collections already taught map/filter; the interview wants indexes and two pointers."]}, {"h": "Beginner example", "code": "def reverse_words(s: str) -> str:\n    return \" \".join(reversed(s.split()))\n\ndef first_unique(s: str) -> str | None:\n    from collections import Counter\n    counts = Counter(s)\n    for ch in s:\n        if counts[ch] == 1:\n            return ch\n    return None\n\nprint(reverse_words(\"fit paradox portal\"))\nprint(first_unique(\"aabbc\"))", "out": "portal paradox fit then c."}, {"h": "Exercise", "p": ["Two sum. Valid parentheses. Reverse words. Write pytest for each."]}, {"h": "Next", "p": ["#dsa-hash"]}]}, {"id": "dsa-hash", "title": "Hash maps and sets", "level": "beginner", "priority": "essential", "minutes": 40, "summary": "dict and set are the default interview upgrade from nested loops.", "blocks": [{"h": "Beginner example", "code": "def two_sum(nums: list[int], target: int) -> tuple[int, int] | None:\n    seen: dict[int, int] = {}\n    for i, n in enumerate(nums):\n        if target - n in seen:\n            return seen[target - n], i\n        seen[n] = i\n    return None\n\nprint(two_sum([2, 7, 11, 15], 9))", "out": "(0, 1)"}, {"h": "Next", "p": ["#dsa-stack"]}]}, {"id": "dsa-stack", "title": "Stacks and queues", "level": "beginner", "priority": "essential", "minutes": 35, "summary": "Stack is LIFO: undo, DFS, parentheses. Queue is FIFO: BFS, worker intake. collections.deque is the Python queue. list.pop(0) is the wrong queue.", "blocks": [{"h": "Beginner example", "code": "from collections import deque\n\ndef valid_parens(s: str) -> bool:\n    pairs = {\")\": \"(\", \"]\": \"[\", \"}\": \"{\"}\n    stack: list[str] = []\n    for ch in s:\n        if ch in \"([{\":\n            stack.append(ch)\n        elif not stack or stack.pop() != pairs[ch]:\n            return False\n    return not stack\n\nq = deque([\"ingest\", \"embed\"])\nq.append(\"index\")\nprint(valid_parens(\"{[()]}\"), q.popleft())", "out": "True then ingest."}, {"h": "Next", "p": ["#dsa-linked"]}]}, {"id": "dsa-linked", "title": "Linked lists", "level": "intermediate", "priority": "essential", "minutes": 40, "summary": "You will rarely ship a linked list in FastAPI. You will reverse one on a whiteboard. Know dummy heads and two pointers.", "blocks": [{"h": "Beginner example", "code": "class Node:\n    def __init__(self, val: int, next: \"Node | None\" = None) -> None:\n        self.val = val\n        self.next = next\n\ndef reverse(head: Node | None) -> Node | None:\n    prev = None\n    cur = head\n    while cur:\n        nxt = cur.next\n        cur.next = prev\n        prev = cur\n        cur = nxt\n    return prev"}, {"h": "Implementation task", "p": ["Write pytest that 1→2→3 becomes 3→2→1. Then merge two sorted lists."]}, {"h": "Next", "p": ["#dsa-tree"]}]}, {"id": "dsa-tree", "title": "Trees, BST, heaps, tries", "level": "intermediate", "priority": "essential", "minutes": 55, "summary": "A heap is Python's heapq. A trie is a nested dict. BST inorder is sorted. Document tags and autocomplete are trie-shaped.", "blocks": [{"h": "Beginner example", "code": "import heapq\n\ndef top_k(nums: list[int], k: int) -> list[int]:\n    return heapq.nlargest(k, nums)\n\ntrie: dict = {}\nfor word in (\"loan\", \"log\"):\n    node = trie\n    for ch in word:\n        node = node.setdefault(ch, {})\n    node[\"$\"] = True\nprint(top_k([3, 1, 4, 1, 5, 9], 2))\nprint(\"loan\"[:2] in (\"lo\",))", "out": "[9, 5] then True."}, {"h": "Next", "p": ["#dsa-graph"]}]}, {"id": "dsa-graph", "title": "Graphs, BFS, DFS", "level": "intermediate", "priority": "essential", "minutes": 50, "summary": "Org charts, document links, and service dependencies are graphs. BFS for shortest unweighted path. DFS for cycle and finish order.", "blocks": [{"h": "Beginner example", "code": "from collections import deque\n\ndef bfs(start: str, edges: dict[str, list[str]]) -> list[str]:\n    seen = {start}\n    q = deque([start])\n    order = []\n    while q:\n        node = q.popleft()\n        order.append(node)\n        for nxt in edges.get(node, []):\n            if nxt not in seen:\n                seen.add(nxt)\n                q.append(nxt)\n    return order"}, {"h": "Next", "p": ["#dsa-search"]}]}]}, {"id": "dsa-patterns", "title": "Interview patterns and a problem ladder", "topics": [{"id": "dsa-search", "title": "Linear search, binary search, sorting", "level": "beginner", "priority": "essential", "minutes": 40, "summary": "Binary search needs a sorted view or a monotonic predicate. bisect is the library. sort in Python is Timsort, O(n log n).", "blocks": [{"h": "Beginner example", "code": "import bisect\n\ndef first_gte(nums: list[int], target: int) -> int:\n    return bisect.bisect_left(nums, target)\n\nprint(first_gte([1, 3, 3, 7], 3))", "out": "1, the first index where value is >= 3."}, {"h": "When to use it", "p": ["Linear search for n under a few dozen or unsorted input. Binary search when the predicate is monotonic."]}, {"h": "Next", "p": ["#dsa-two-pointers"]}]}, {"id": "dsa-two-pointers", "title": "Two pointers, sliding window, prefix sums", "level": "intermediate", "priority": "essential", "minutes": 50, "summary": "Use two pointers on sorted arrays or on a string window. Prefix sums turn range sums into O(1).", "blocks": [{"h": "Beginner example", "code": "def max_window(nums: list[int], k: int) -> int:\n    s = sum(nums[:k])\n    best = s\n    for i in range(k, len(nums)):\n        s += nums[i] - nums[i - k]\n        best = max(best, s)\n    return best"}, {"h": "Next", "p": ["#dsa-backtrack"]}]}, {"id": "dsa-backtrack", "title": "Recursion, backtracking, greedy", "level": "intermediate", "priority": "essential", "minutes": 45, "summary": "Recursion needs a base case. Backtracking undoes a choice. Greedy works only with a proof or a known pattern (interval scheduling).", "blocks": [{"h": "Next", "p": ["#dsa-dp"]}]}, {"id": "dsa-dp", "title": "Dynamic programming, including your two files", "level": "advanced", "priority": "essential", "minutes": 70, "summary": "script.py is edit distance (done). knapsackzeroonebyset.py is a stub. Finish knapsack with tests.", "blocks": [{"h": "Why it exists", "p": ["DP stores answers to overlapping subproblems. Edit distance is the grid you already wrote. 0/1 knapsack is the next grid or the set-of-states version in your comments."]}, {"h": "Beginner example", "code": "def knapsack(weights: list[int], values: list[int], capacity: int) -> int:\n    possible = {(0, 0)}\n    for w, v in zip(weights, values):\n        extra = {(cw + w, cv + v) for cw, cv in possible if cw + w \u003c= capacity}\n        possible |= extra\n    return max(cv for _, cv in possible)\n\nprint(knapsack([1, 3, 4, 5], [10, 40, 50, 70], 7))", "out": "90, from items 3 and 4 (weights 3+4)."}, {"h": "Implementation task", "p": ["Replace the stub in a copy under the new repo. Keep the Desktop file as history. Parametrize tests for capacity 0 and one item too heavy."]}, {"h": "Interview prompts", "ul": ["Top-down memo versus bottom-up table", "When greedy fails on knapsack"]}, {"h": "Next", "p": ["#dsa-ladder"]}]}, {"id": "dsa-ladder", "title": "Progressive problem list", "level": "intermediate", "priority": "essential", "minutes": 20, "summary": "Four problems a week in months 1–2, two a week after that. Speak complexity before code.", "blocks": [{"h": "Exercise", "p": ["Beginner: two sum, valid parentheses, merge two sorted lists, first unique character. Intermediate: longest substring without repeat (Accenture Day 10), product except self, BST kth smallest, course schedule DFS. Advanced: edit distance, 0/1 knapsack, median of two sorted arrays, word break."]}, {"h": "Implementation task", "p": ["A folder problems/ with one test file per pattern. Commit one pattern a week."]}, {"h": "Next", "p": ["#http-basics"]}]}]}]}, {"title": "3 · Backend engineering", "modules": [{"id": "http-api", "title": "HTTP, REST, FastAPI, Pydantic", "topics": [{"id": "http-basics", "title": "HTTP, TLS, DNS, TCP, the request cycle", "level": "beginner", "priority": "essential", "minutes": 50, "summary": "You already run Nginx in front of PHP-FPM. Name the same hops in Python.", "blocks": [{"h": "What it is", "p": ["DNS finds an IP. TCP connects. TLS wraps. HTTP carries method, path, headers, body. The status code is part of the contract."]}, {"h": "How it works", "p": ["Browser or curl → Nginx → uvicorn → FastAPI route → service → PostgreSQL. Cookies are headers. Sessions are server state keyed by a cookie."]}, {"h": "Compared with a neighbour", "p": ["Laravel's public/index.php is uvicorn plus the FastAPI app object."]}, {"h": "References", "ul": ["[MDN HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)"]}, {"h": "Next", "p": ["#http-rest"]}]}, {"id": "http-rest", "title": "REST, idempotency, pagination, versioning", "level": "intermediate", "priority": "essential", "minutes": 50, "summary": "GET and PUT retry safely. POST payment does not, unless an Idempotency-Key is stored.", "blocks": [{"h": "Backend or product example", "p": ["Razorpay callbacks on Ugro Customer Portal are the story: verify signature, store event id, do not credit twice. That is idempotency. Do not invent a second incident."]}, {"h": "References", "ul": ["[MDN HTTP methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)"]}, {"h": "Next", "p": ["#http-json"]}]}, {"id": "http-json", "title": "JSON, validation, OpenAPI, error bodies", "level": "intermediate", "priority": "essential", "minutes": 45, "summary": "Practice OpenAPI. Do not put OpenAPI on the resume until a file in the repo is the source of truth.", "blocks": [{"h": "How it works", "p": ["Pydantic models become the OpenAPI schema FastAPI publishes at /docs. Error body: code, message, request_id."]}, {"h": "References", "ul": ["[OpenAPI](https://spec.openapis.org/oas/latest.html)"]}, {"h": "Next", "p": ["#fastapi-core"]}]}, {"id": "fastapi-core", "title": "FastAPI routing, params, body, Pydantic", "level": "intermediate", "priority": "essential", "minutes": 70, "summary": "This is the Laravel routes file plus Form Request, in one decorator.", "blocks": [{"h": "Beginner example", "code": "from fastapi import FastAPI, HTTPException\nfrom pydantic import BaseModel, Field\n\napp = FastAPI()\n\nclass DocumentIn(BaseModel):\n    title: str = Field(min_length=1, max_length=200)\n    tenant_id: str\n\n@app.post(\"/v1/documents\", status_code=201)\ndef create_document(body: DocumentIn) -> dict[str, str]:\n    if body.tenant_id == \"blocked\":\n        raise HTTPException(status_code=403, detail=\"tenant blocked\")\n    return {\"id\": \"doc_1\", \"title\": body.title}", "out": "POST with a title returns 201 JSON. Empty title returns 422 from Pydantic."}, {"h": "Compared with a neighbour", "p": ["Route::post is @app.post. Form Request is the Pydantic model. abort(403) is HTTPException."]}, {"h": "Implementation task", "p": ["Versioned documents API with list, get, create. Tests with httpx AsyncClient or TestClient."]}, {"h": "References", "ul": ["[FastAPI tutorial](https://fastapi.tiangolo.com/tutorial/)", "[Pydantic](https://docs.pydantic.dev/)"]}, {"h": "Next", "p": ["#fastapi-prod"]}]}, {"id": "fastapi-prod", "title": "Dependencies, middleware, lifespan, background, config", "level": "intermediate", "priority": "essential", "minutes": 60, "summary": "Depends is the service container for one request. lifespan starts the pool. Background tasks are for tiny work, not SMS at scale.", "blocks": [{"h": "How it works", "p": ["A get_current_user dependency reads the Authorization header. Middleware logs request_id. Settings use pydantic-settings from env."]}, {"h": "Common mistakes", "ul": ["Putting the database session in a global without a request scope", "Using BackgroundTasks for work that must retry after a crash — that belongs on a queue"]}, {"h": "References", "ul": ["[Dependencies](https://fastapi.tiangolo.com/tutorial/dependencies/)"]}, {"h": "Next", "p": ["#auth-core"]}]}]}, {"id": "auth-data", "title": "Auth, SQL, ORM, Redis, jobs", "topics": [{"id": "auth-core", "title": "Passwords, sessions, JWT, OAuth2, RBAC", "level": "intermediate", "priority": "essential", "minutes": 70, "summary": "Practice JWT here. The Accenture gap note is still right: Ugro is roles on one account, not a named OAuth2 deployment.", "blocks": [{"h": "What it is", "p": ["password hashing (bcrypt/argon2), session cookies, JWT access/refresh, OAuth2 authorization code vs client credentials, RBAC vs permission flags."]}, {"h": "Why it exists", "p": ["A document assistant with tenants is useless if org A can read org B."]}, {"h": "How it works", "p": ["Hash passwords with a slow function. JWT is three Base64url parts. Verify exp, signature, aud. Store refresh tokens hashed if you need revoke."]}, {"h": "Beginner example", "code": "import hashlib, hmac, json, base64, time\n\ndef b64(data: bytes) -> str:\n    return base64.urlsafe_b64encode(data).rstrip(b\"=\").decode()\n\ndef sign(payload: dict, secret: str) -> str:\n    header = b64(json.dumps({\"alg\": \"HS256\"}).encode())\n    body = b64(json.dumps(payload).encode())\n    sig = b64(hmac.new(secret.encode(), f\"{header}.{body}\".encode(), hashlib.sha256).digest())\n    return f\"{header}.{body}.{sig}\"\n\nprint(sign({\"sub\": \"u1\", \"exp\": int(time.time()) + 60}, \"dev-only\")[:12])", "out": "A JWT prefix, not a production secret. Rotate secrets. Never log the token."}, {"h": "Interview prompts", "ul": ["JWT versus the session model you shipped", "Why logout is hard with only a stateless access token"]}, {"h": "References", "ul": ["[OWASP Auth](https://owasp.org/www-project-web-security-testing-guide/)"]}, {"h": "Next", "p": ["#sql-schema"]}]}, {"id": "sql-schema", "title": "PostgreSQL schema, types, constraints, transactions", "level": "intermediate", "priority": "essential", "minutes": 60, "summary": "You already write SQL. Add PostgreSQL names: jsonb, timestamptz, uuid, exclusion where needed.", "blocks": [{"h": "How it works", "p": ["PK, FK, unique, check. Transactions wrap payment + ledger. Isolation: read committed is the default; serializable is rare and costly."]}, {"h": "References", "ul": ["[PostgreSQL](https://www.postgresql.org/docs/)"]}, {"h": "Next", "p": ["#sql-query"]}]}, {"id": "sql-query", "title": "Joins, CTE, windows, indexes, EXPLAIN, locks", "level": "intermediate", "priority": "essential", "minutes": 70, "summary": "Same story as Accenture Day 7, on PostgreSQL: EXPLAIN ANALYZE, leftmost prefix, covering indexes, tenant_id in the index.", "blocks": [{"h": "Beginner example", "code": "-- documents for one tenant, recent first\n-- CREATE INDEX documents_tenant_created_idx ON documents (tenant_id, created_at DESC);\nSELECT id, title, created_at\nFROM documents\nWHERE tenant_id = 'org_a'\nORDER BY created_at DESC\nLIMIT 20;"}, {"h": "Implementation task", "p": ["Five EXPLAIN ANALYZE captures in a notes/sql.md file. No fake timings."]}, {"h": "Next", "p": ["#orm-alchemy"]}]}, {"id": "orm-alchemy", "title": "SQLAlchemy, Alembic, sessions, pooling", "level": "intermediate", "priority": "essential", "minutes": 60, "summary": "Eloquent is SQLAlchemy 2.x. Migrations are Alembic, like Laravel migrations.", "blocks": [{"h": "How it works", "p": ["Session per request. expire_on_commit awareness. relationship() is with(). A repository hides query details from the HTTP layer."]}, {"h": "References", "ul": ["[SQLAlchemy](https://docs.sqlalchemy.org/)"]}, {"h": "Next", "p": ["#cache-redis"]}]}, {"id": "cache-redis", "title": "Redis: cache, TTL, invalidation, rate limits, locks", "level": "intermediate", "priority": "essential", "minutes": 55, "summary": "Cache a repayment-shaped read. Do not cache a payment write. Religare already taught this in Laravel.", "blocks": [{"h": "Common mistakes", "ul": ["Cache without tenant in the key", "No TTL", "Lock without a timeout"]}, {"h": "References", "ul": ["[Redis](https://redis.io/docs/)"]}, {"h": "Next", "p": ["#jobs-queues"]}]}, {"id": "jobs-queues", "title": "Queues, retries, backoff, DLQ, idempotency, schedules", "level": "intermediate", "priority": "essential", "minutes": 60, "summary": "Laravel jobs map to Redis/SQS workers. Duplicate delivery is normal. Idempotency keys on the write.", "blocks": [{"h": "How it works", "p": ["At-least-once: the worker may run twice. Store processed_message_id. Dead-letter after N tries. Exponential backoff with jitter."]}, {"h": "Compared with a neighbour", "p": ["SNS on the resume is pub/sub. SQS is a queue. Do not say you administered SQS unless you did."]}, {"h": "Next", "p": ["#jobs-webhooks"]}]}, {"id": "jobs-webhooks", "title": "Webhooks, HTTP clients, timeouts, circuit breakers", "level": "intermediate", "priority": "essential", "minutes": 45, "summary": "Outbound calls get a timeout, a retry policy for 502/503, and no retry on 400. Circuit breakers stop calling a dead peer.", "blocks": [{"h": "Next", "p": ["#files-email"]}]}, {"id": "files-email", "title": "Files, object storage, signed URLs, email/SMS", "level": "intermediate", "priority": "essential", "minutes": 40, "summary": "S3 private buckets, short-lived signed GET. SMS stays on a worker. Do not list RDS on a project unless that project used it.", "blocks": [{"h": "Next", "p": ["#test-api"]}]}, {"id": "test-api", "title": "Unit, API, database, and contract tests", "level": "intermediate", "priority": "essential", "minutes": 50, "summary": "HTTP tests hit TestClient. Database tests use a transaction rollback or a disposable schema. One test is the tenant isolation proof.", "blocks": [{"h": "Next", "p": ["#arch-clean"]}]}, {"id": "arch-clean", "title": "Layered architecture, modular monolith, microservices", "level": "intermediate", "priority": "essential", "minutes": 40, "summary": "Default is a modular monolith. Microservices after a team and a failure domain need them. v4 already rejected seven toy apps.", "blocks": [{"h": "Next", "p": ["#obs-prod"]}]}, {"id": "obs-prod", "title": "Logs, metrics, traces, health, shutdown", "level": "intermediate", "priority": "essential", "minutes": 45, "summary": "JSON logs with request_id. Metrics: rate, errors, duration, queue depth. Health: liveness vs readiness. SIGTERM finishes in-flight work.", "blocks": [{"h": "References", "ul": ["[OpenTelemetry](https://opentelemetry.io/docs/)"]}, {"h": "Next", "p": ["#sec-owasp"]}]}, {"id": "sec-owasp", "title": "OWASP, injection, XSS, CSRF, SSRF, CORS, secrets", "level": "intermediate", "priority": "essential", "minutes": 50, "summary": "Parameterized SQL. Escape HTML. CSRF on cookie sessions. Block SSRF by allowlisting outbound URLs. CORS is not auth.", "blocks": [{"h": "References", "ul": ["[OWASP](https://owasp.org/)"]}, {"h": "Next", "p": ["#linux-fs"]}]}]}]}, {"title": "4 · Linux, Git, Docker, CI, AWS", "modules": [{"id": "linux-git", "title": "Linux and Git", "topics": [{"id": "linux-fs", "title": "Filesystem, permissions, users, processes, systemd", "level": "beginner", "priority": "essential", "minutes": 50, "summary": "You already SSH to Ubuntu. Name ls, chmod, chown, ps, top, journalctl, ss without guessing flags in the interview.", "blocks": [{"h": "Beginner example", "code": "# read-only investigation shape\n# journalctl -u nginx -n 50 --no-pager\n# ss -lptn\n# tail -n 100 /var/log/nginx/access.log | grep ' 500 ' "}, {"h": "References", "ul": ["[man pages via man7](https://man7.org/linux/man-pages/)"]}, {"h": "Next", "p": ["#linux-net"]}]}, {"id": "linux-net", "title": "Networking, SSH, env, pipes, logs, curl", "level": "beginner", "priority": "essential", "minutes": 40, "summary": "curl -i shows headers. pipes and redirection are how you isolate a 500 without a GUI.", "blocks": [{"h": "Beginner example", "code": "# curl -i https://example.com\n# ssh -i key.pem ubuntu@HOST\n# export DATABASE_URL=postgres://...\n# grep 500 /var/log/nginx/access.log | tail"}, {"h": "Common mistakes", "ul": ["sshing as root for app work", "leaving 22 open to 0.0.0.0/0"]}, {"h": "Next", "p": ["#git-flow"]}]}, {"id": "git-flow", "title": "Branch, commit, merge, rebase, PR, tags", "level": "beginner", "priority": "essential", "minutes": 40, "summary": "Small commits. Rebase only your unpublished branch. Never force-push shared main. Tags mark the v0.1.0 you ship on day 30.", "blocks": [{"h": "How it works", "p": ["feature branch → PR → tests → merge. Conflict: take the tenant filter from both sides if each added a different clause. Signed commits are optional."]}, {"h": "Common mistakes", "ul": ["git add . that includes .env", "rebase of a branch two people push"]}, {"h": "Next", "p": ["#docker-core"]}]}]}, {"id": "ship", "title": "Docker, CI, AWS, Nginx, later IaC", "topics": [{"id": "docker-core", "title": "Images, containers, Dockerfile, Compose, security", "level": "intermediate", "priority": "essential", "minutes": 60, "summary": "Image is the recipe. Container is the process. Multi-stage builds drop compilers. Run as non-root. Secrets are env, not layers.", "blocks": [{"h": "Beginner example", "code": "# Dockerfile shape\n# FROM python:3.12-slim AS base\n# WORKDIR /app\n# COPY pyproject.toml .\n# RUN pip install --no-cache-dir .\n# COPY src ./src\n# USER nobody\n# CMD [\"uvicorn\", \"app.main:app\", \"--host\", \"0.0.0.0\"]"}, {"h": "References", "ul": ["[Docker](https://docs.docker.com/)"]}, {"h": "Next", "p": ["#cicd-gha"]}]}, {"id": "cicd-gha", "title": "GitHub Actions: test, lint, image, rollback idea", "level": "intermediate", "priority": "essential", "minutes": 45, "summary": "PR runs pytest. Main builds an image. Staging then production. Rollback is a previous image, not a hope.", "blocks": [{"h": "References", "ul": ["[GitHub Actions](https://docs.github.com/actions)"]}, {"h": "Next", "p": ["#aws-core"]}]}, {"id": "aws-core", "title": "IAM, EC2, S3, RDS, VPC, SG, ALB, ASG, CloudWatch, SQS, SNS, Secrets", "level": "intermediate", "priority": "essential", "minutes": 70, "summary": "Speak EC2, S3, SNS, Nginx, Ubuntu, Docker, Jenkins as used. Treat VPC, ALB, IAM design, CloudWatch, ECS, SQS as study until you operate them.", "blocks": [{"h": "How it works", "p": ["IAM least privilege. Security group as stateful firewall: 443 public, SSH limited, DB private. CloudWatch is logs and alarms. SQS is the queue; SNS is fan-out."]}, {"h": "References", "ul": ["[AWS](https://docs.aws.amazon.com/)"]}, {"h": "Next", "p": ["#nginx-tls"]}]}, {"id": "nginx-tls", "title": "Nginx, TLS, app servers, process managers", "level": "intermediate", "priority": "essential", "minutes": 40, "summary": "Nginx terminates TLS and proxies to uvicorn or PHP-FPM. Workers are a second process, like queue:work.", "blocks": [{"h": "Next", "p": ["#iac-tf"]}]}, {"id": "iac-tf", "title": "Terraform fundamentals", "level": "advanced", "priority": "optional", "minutes": 40, "summary": "After you can deploy by hand. State, providers, plan vs apply. Optional until a role asks.", "blocks": [{"h": "References", "ul": ["[Terraform](https://developer.hashicorp.com/terraform/docs)"]}, {"h": "Next", "p": ["#k8s-fund"]}]}, {"id": "k8s-fund", "title": "Kubernetes: what and when", "level": "advanced", "priority": "optional", "minutes": 40, "summary": "Learn after Docker Compose and one AWS deploy. Pods, services, deployments. Skip cluster admin for the 90-day target.", "blocks": [{"h": "References", "ul": ["[Kubernetes](https://kubernetes.io/docs/)"]}, {"h": "Next", "p": ["#sd-reqs"]}]}]}]}, {"title": "5 · System design", "modules": [{"id": "sd-ideas", "title": "Language of a design interview", "topics": [{"id": "sd-reqs", "title": "Requirements, SLOs, capacity, trade-offs", "level": "intermediate", "priority": "essential", "minutes": 40, "summary": "Functional vs non-functional. QPS, storage, p99 latency, availability. Write the numbers before the boxes.", "blocks": [{"h": "Next", "p": ["#sd-scale"]}]}, {"id": "sd-scale", "title": "Load balancing, cache, CDN, replica, shard, indexes", "level": "intermediate", "priority": "essential", "minutes": 45, "summary": "Vertical then horizontal. Cache-aside. Read replica for reads that can lag. Shard only with a key you can live with.", "blocks": [{"h": "Next", "p": ["#sd-style"]}]}, {"id": "sd-style", "title": "Monolith, modular monolith, microservices", "level": "intermediate", "priority": "essential", "minutes": 30, "summary": "This product stays a modular monolith through project 10 unless a real constraint appears.", "blocks": [{"h": "Next", "p": ["#sd-async"]}]}, {"id": "sd-async", "title": "Sync vs async, queues, delivery, ordering, retries", "level": "intermediate", "priority": "essential", "minutes": 40, "summary": "At-least-once plus idempotency is the default. Exactly-once is a marketing phrase for a transaction plus a dedupe table.", "blocks": [{"h": "Next", "p": ["#sd-cap"]}]}, {"id": "sd-cap", "title": "Consistency, availability, partitions, failure", "level": "advanced", "priority": "essential", "minutes": 40, "summary": "A tenant read-after-write on documents should hit the primary. Search indexes can lag. Say that out loud.", "blocks": [{"h": "Next", "p": ["#sd-resilience"]}]}, {"id": "sd-resilience", "title": "Rate limits, gateways, circuit breakers, bulkheads, timeouts", "level": "intermediate", "priority": "essential", "minutes": 35, "summary": "Timeouts are first. Retries need jitter. Bulkheads isolate the LLM client from the database pool.", "blocks": [{"h": "Next", "p": ["#sd-slo"]}]}, {"id": "sd-slo", "title": "SLI, SLO, SLA, alerts, incidents, postmortems", "level": "intermediate", "priority": "essential", "minutes": 30, "summary": "SLA is a contract. You have not claimed SLA ownership at work. SLO is an internal target. Alerts on symptoms, not every 5xx spike of one bot.", "blocks": [{"h": "Next", "p": ["#sd-url"]}]}]}, {"id": "sd-drills", "title": "Six designs on paper and then in the repo", "topics": [{"id": "sd-url", "title": "Design: URL shortener", "level": "intermediate", "priority": "essential", "minutes": 40, "summary": "Requirements: create, redirect, optional expiry. API POST /links. Table links(code pk, url, owner, expires_at). Hash collision retry. Cache hot codes. Abuse: rate limit and malware scan later.", "blocks": [{"h": "Next", "p": ["#sd-notify"]}]}, {"id": "sd-notify", "title": "Design: notification service", "level": "intermediate", "priority": "essential", "minutes": 40, "summary": "API accepts notify commands. Worker talks to SMS/email. Idempotency on (tenant, event_id). This maps to Ugro queued SMS without copying client code.", "blocks": [{"h": "Next", "p": ["#sd-upload"]}]}, {"id": "sd-upload", "title": "Design: file upload", "level": "intermediate", "priority": "essential", "minutes": 35, "summary": "Client uploads to signed S3 PUT. API stores metadata. Virus scan worker. Size limits. This becomes document ingestion.", "blocks": [{"h": "Next", "p": ["#sd-ecom"]}]}, {"id": "sd-ecom", "title": "Design: ecommerce backend", "level": "advanced", "priority": "advanced", "minutes": 45, "summary": "Catalog, cart, order, payment states. Inventory reservation. Fit Paradox is the honest story: catalog, subscription, Razorpay, Shiprocket — as you actually built them.", "blocks": [{"h": "Next", "p": ["#sd-pay"]}]}, {"id": "sd-pay", "title": "Design: payment workflow", "level": "advanced", "priority": "essential", "minutes": 45, "summary": "States: created, authorized, captured, failed, refunded. Never mark paid on browser return. Webhook + event id. Ledger row in the same transaction as the status change.", "blocks": [{"h": "Next", "p": ["#sd-ai-search"]}]}, {"id": "sd-ai-search", "title": "Design: AI document search platform", "level": "advanced", "priority": "essential", "minutes": 50, "summary": "Ingest → parse → chunk → embed → pgvector. Query → tenant filter → retrieve → generate → cite. Eval set in CI. Cost per request. This is the capstone of the repo.", "blocks": [{"h": "Next", "p": ["#ai-literacy"]}]}]}]}, {"title": "6 · AI application engineering", "modules": [{"id": "ai-found", "title": "LLM literacy for application engineers", "topics": [{"id": "ai-literacy", "title": "AI, ML, DL, generative models, tokens, cost", "level": "beginner", "priority": "essential", "minutes": 45, "summary": "Enough to choose a model and a budget. Not an ML Engineer syllabus. Training vs inference. Context window. Tokens drive latency and money.", "blocks": [{"h": "When to use it", "p": ["Use a hosted API first. Do not train. Fine-tuning is a later comparison, not the default."]}, {"h": "References", "ul": ["[Hugging Face conceptual guides](https://huggingface.co/docs)"]}, {"h": "Next", "p": ["#ai-api"]}]}, {"id": "ai-api", "title": "Calling LLM APIs from Python", "level": "intermediate", "priority": "essential", "minutes": 55, "summary": "Keys in env. Timeouts. Retries on 429/503. Streaming for UX. Structured output with a schema. Log tokens, not prompts that contain secrets.", "blocks": [{"h": "Beginner example", "code": "import os, json, urllib.request\n\ndef complete(prompt: str) -> dict:\n    req = urllib.request.Request(\n        \"https://api.openai.com/v1/chat/completions\",\n        data=json.dumps({\n            \"model\": \"gpt-4.1-mini\",\n            \"messages\": [{\"role\": \"user\", \"content\": prompt}],\n            \"max_tokens\": 200,\n        }).encode(),\n        headers={\n            \"Authorization\": f\"Bearer {os.environ['OPENAI_API_KEY']}\",\n            \"Content-Type\": \"application/json\",\n        },\n        method=\"POST\",\n    )\n    with urllib.request.urlopen(req, timeout=30) as resp:\n        return json.loads(resp.read().decode())", "out": "A JSON object with choices[0].message.content when the key is set. Do not commit the key. Swap in the official SDK when you add the dependency."}, {"h": "References", "ul": ["[OpenAI API](https://platform.openai.com/docs/)"]}, {"h": "Next", "p": ["#ai-prompt"]}]}, {"id": "ai-prompt", "title": "Prompts, tools, structured output, versioning", "level": "intermediate", "priority": "essential", "minutes": 45, "summary": "System message sets policy. Few-shot shows shape. Tool/function calling is a JSON contract. Version prompts in git like code.", "blocks": [{"h": "Next", "p": ["#ai-embed"]}]}, {"id": "ai-embed", "title": "Embeddings, similarity, chunking, filters", "level": "intermediate", "priority": "essential", "minutes": 50, "summary": "An embedding is a vector. Cosine similarity finds neighbours. Chunk by heading, not a random 500 characters. Metadata filter tenant_id before similarity.", "blocks": [{"h": "Next", "p": ["#ai-rag"]}]}, {"id": "ai-rag", "title": "RAG end to end", "level": "advanced", "priority": "essential", "minutes": 70, "summary": "Ingest, parse, clean, chunk, embed, index, retrieve, rerank, prompt, generate, cite, evaluate. Refuse when retrieval is empty.", "blocks": [{"h": "How it works", "p": ["Never put another tenant's chunks in the prompt. Citations are document ids returned by SQL, not invented by the model."]}, {"h": "References", "ul": ["[roadmap.sh AI engineer](https://roadmap.sh/ai-engineer)"]}, {"h": "Next", "p": ["#ai-pgvector"]}]}, {"id": "ai-pgvector", "title": "pgvector first; dedicated vector DBs later", "level": "advanced", "priority": "essential", "minutes": 40, "summary": "Keep vectors next to tenant rows. A separate vector database is for scale or hybrid features you can measure. Not a week-one dependency.", "blocks": [{"h": "References", "ul": ["[pgvector](https://github.com/pgvector/pgvector)"]}, {"h": "Next", "p": ["#ai-ingest"]}]}, {"id": "ai-ingest", "title": "PDFs and files: workers, duplicates, deletes, ACL", "level": "advanced", "priority": "essential", "minutes": 45, "summary": "Store the original in object storage. Parsing is a job. Dedup by hash. Deletes remove chunks. ACL is a SQL filter, not a prompt instruction.", "blocks": [{"h": "Next", "p": ["#ai-tools"]}]}, {"id": "ai-tools", "title": "Tools, workflows, agents, human approval", "level": "advanced", "priority": "advanced", "minutes": 50, "summary": "After a working RAG path. A raw loop first: observe, decide, call, observe. Bound tools. Timeouts. Human approval for writes.", "blocks": [{"h": "Next", "p": ["#ai-mcp"]}]}, {"id": "ai-mcp", "title": "Model Context Protocol, one real server", "level": "advanced", "priority": "optional", "minutes": 40, "summary": "MCP is a tool transport. One server that exposes tenant-scoped search is enough. After the raw loop.", "blocks": [{"h": "References", "ul": ["[MCP](https://modelcontextprotocol.io/)"]}, {"h": "Next", "p": ["#ai-sec"]}]}, {"id": "ai-sec", "title": "Prompt injection, leakage, tenant isolation, unsafe tools", "level": "advanced", "priority": "essential", "minutes": 45, "summary": "Documents are untrusted. A PDF must not become a system prompt. Tools cannot run shell. Isolation is in the query.", "blocks": [{"h": "Next", "p": ["#ai-eval"]}]}, {"id": "ai-eval", "title": "Eval sets, groundedness, regression, humans", "level": "advanced", "priority": "essential", "minutes": 40, "summary": "Week of the first LLM endpoint: 20 questions in CI. Later 100, with retrieval scores. LLM-as-judge is a helper, not the only check.", "blocks": [{"h": "Next", "p": ["#ai-obs"]}]}, {"id": "ai-obs", "title": "Traces, cost, cache, fallback, rate limits", "level": "advanced", "priority": "essential", "minutes": 35, "summary": "Log model, tokens, latency, tenant, prompt version, chunk ids. Fallback to a cheaper model on timeout. Cache identical prompts per tenant.", "blocks": [{"h": "Next", "p": ["#ai-ft"]}]}, {"id": "ai-ft", "title": "Prompt vs RAG vs fine-tune — a decision, not a career", "level": "advanced", "priority": "optional", "minutes": 30, "summary": "Prompt for format. RAG for changing private documents. Fine-tune only for a stable style or schema, after you measured RAG. One small LoRA note is enough.", "blocks": [{"h": "Next", "p": ["#ai-responsible"]}]}, {"id": "ai-responsible", "title": "Privacy, retention, consent, sensitive data", "level": "intermediate", "priority": "essential", "minutes": 25, "summary": "Do not paste loan PII into a public model. Retention policy on prompts. User consent for training if a vendor asks. Default is no training.", "blocks": [{"h": "Next", "p": ["#ai-product"]}]}, {"id": "ai-product", "title": "AI features that sit on real APIs and SQL", "level": "advanced", "priority": "essential", "minutes": 30, "summary": "The assistant is a FastAPI route with auth, a usage table, and a worker. A notebook chatbot is a demo, not the portfolio.", "blocks": [{"h": "Next", "p": ["#career-python-iv"]}]}]}]}, {"title": "7 · Career", "modules": [{"id": "career-iv", "title": "Interviews, resume, search", "topics": [{"id": "career-python-iv", "title": "Python and coding rounds", "level": "intermediate", "priority": "essential", "minutes": 40, "summary": "Patterns from #dsa-ladder. Speak brute force, then the structure, then tests. PHP is allowed if they let you pick and the role is Laravel. For Python roles, write Python.", "blocks": [{"h": "Next", "p": ["#career-backend-iv"]}]}, {"id": "career-backend-iv", "title": "API, SQL, Laravel-bridge rounds", "level": "intermediate", "priority": "essential", "minutes": 50, "summary": "Map Eloquent to SQLAlchemy, middleware to Depends, jobs to workers. Do not claim FastAPI production until project 2 is done.", "blocks": [{"h": "Next", "p": ["#career-sys-iv"]}]}, {"id": "career-sys-iv", "title": "System design and AI-application rounds", "level": "advanced", "priority": "essential", "minutes": 45, "summary": "Draw the document assistant you built. If RAG is not built yet, draw the FastAPI service you did build and the RAG you are adding. Do not draw Kafka if it is not in the repo.", "blocks": [{"h": "Next", "p": ["#career-story"]}]}, {"id": "career-story", "title": "How to tell 4.5 years without inflating Python", "level": "beginner", "priority": "essential", "minutes": 40, "summary": "Lead with Gomilestone from June 2022: portals, Razorpay, queues, Oracle on Religare, AWS EC2 deploys. Then: I am building the same class of system in Python, and here is the repo. Count 2018 training separately. Write your own sentence for August 2018–May 2022.", "blocks": [{"h": "Common mistakes", "ul": ["Saying 4.5+ years of Python", "Listing JWT as production", "Listing RDS on a project that only had it in a summary"]}, {"h": "Next", "p": ["#career-resume"]}]}, {"id": "career-resume", "title": "Resume, GitHub, README, demo tape", "level": "beginner", "priority": "essential", "minutes": 40, "summary": "Laravel proof first. Python as the new system. Impact you can defend. GitHub only with a real URL; the old PDF had github.com/ truncated. README: architecture, how to run, trade-offs, eval numbers only if measured.", "blocks": [{"h": "Next", "p": ["#career-mocks"]}]}, {"id": "career-mocks", "title": "Mock interviews and written answers", "level": "intermediate", "priority": "essential", "minutes": 30, "summary": "Use the Interview questions tab. Record one 45-minute technical and one 30-minute behavioral from week 4 onward.", "blocks": [{"h": "Next", "p": ["#career-search"]}]}, {"id": "career-search", "title": "Search, weekly applications, negotiation, milestones", "level": "beginner", "priority": "essential", "minutes": 40, "summary": "From week 3: 8–12 tailored applications. Track company, role, stack, date, follow-up. Ask band ₹15–20 LPA with current CTC ₹7 LPA. ₹30 LPA is a later milestone after the RAG system is real.", "blocks": [{"h": "Implementation task", "p": ["A private applications.md that never goes in a public repo if it has names you should not share."]}, {"h": "Next", "p": ["#py-diagnostic"]}]}]}]}], "plan": [{"day": 1, "date": "2026-10-18", "focus": "Closed-book #py-diagnostic. If stuck, #py-classes. If fluent, #py-functions the same afternoon.", "build": "Repo skeleton, venv, README. Do not start Accenture day 15."}, {"day": 2, "date": "2026-10-19", "focus": "#py-decorators and finish ABC from abstractex.py as tests in the new repo.", "build": "Logged decorator plus PaymentGateway ABC."}, {"day": 3, "date": "2026-10-20", "focus": "#py-exceptions #py-typing #py-stdlib money and UTC.", "build": "TenantMismatch and Decimal helpers with pytest."}, {"day": 4, "date": "2026-10-21", "focus": "#py-pytest #py-packaging. Two sum from #dsa-hash as a warm-up.", "build": "pytest.ini and CI-ready local command."}, {"day": 5, "date": "2026-10-22", "focus": "#http-basics #http-rest. Compare to Ugro portal verbs you actually shipped.", "build": "Written error body and status code table in README."}, {"day": 6, "date": "2026-10-23", "focus": "#fastapi-core list/create documents.", "build": "Project 2 started: FastAPI + TestClient."}, {"day": 7, "date": "2026-10-24", "focus": "Revision day. Redo diagnostic. Four DSA beginner problems spoken aloud.", "build": "No new library."}, {"day": 8, "date": "2026-10-25", "focus": "#sql-schema #sql-query on a local PostgreSQL.", "build": "orgs, users, documents tables. Five EXPLAIN notes."}, {"day": 9, "date": "2026-10-26", "focus": "#orm-alchemy Alembic.", "build": "Migrations in the repo."}, {"day": 10, "date": "2026-10-27", "focus": "#fastapi-prod Depends for a fake current user.", "build": "Tenant id on every query."}, {"day": 11, "date": "2026-10-28", "focus": "#dsa-two-pointers and longest substring without repeat.", "build": "One problem file with tests."}, {"day": 12, "date": "2026-10-29", "focus": "#http-json OpenAPI as a file in the repo. Practice only.", "build": "openapi.yaml matching the documents API."}, {"day": 13, "date": "2026-10-30", "focus": "#py-async timeouts on a fake outbound call.", "build": "Async client tests for timeout."}, {"day": 14, "date": "2026-10-31", "focus": "Checkpoint. Speak FastAPI request path. #career-story first draft.", "build": "90-second intro recorded. Python is growing; Laravel is shipped."}, {"day": 15, "date": "2026-11-01", "focus": "#auth-core hashing. Session vs JWT drawing.", "build": "Password hash on user create. JWT remains labelled practice."}, {"day": 16, "date": "2026-11-02", "focus": "RBAC on documents.", "build": "Org A cannot read org B, with a failing test first."}, {"day": 17, "date": "2026-11-03", "focus": "#cache-redis cache-aside on GET document.", "build": "Tenant in the cache key."}, {"day": 18, "date": "2026-11-04", "focus": "#docker-core Compose: api, postgres, redis.", "build": "One command to boot."}, {"day": 19, "date": "2026-11-05", "focus": "#dsa-dp finish knapsack tests.", "build": "knapsack module, not the Desktop stub."}, {"day": 20, "date": "2026-11-06", "focus": "Revision + first tailored applications (week 3).", "build": "8 applications. Log privately."}, {"day": 21, "date": "2026-11-07", "focus": "#sec-owasp CORS vs auth, SQL injection proof with parameters.", "build": "Security notes in README."}, {"day": 22, "date": "2026-11-08", "focus": "#test-api isolation tests.", "build": "Definition of done for project 2."}, {"day": 23, "date": "2026-11-09", "focus": "#career-resume rewrite. Laravel proof, Python building.", "build": "One-page resume draft. No new keywords."}, {"day": 24, "date": "2026-11-10", "focus": "#sd-url on paper then as a module if time.", "build": "Design one-pager."}, {"day": 25, "date": "2026-11-11", "focus": "Project 3 auth polish.", "build": "Refresh token hashed or a documented session design."}, {"day": 26, "date": "2026-11-12", "focus": "#jobs-queues worker skeleton.", "build": "Project 4 started: notify job idempotent."}, {"day": 27, "date": "2026-11-13", "focus": "#linux-fs #linux-net on your own machine.", "build": "Journal of commands you actually ran."}, {"day": 28, "date": "2026-11-14", "focus": "Weekly mock from Interview tab, Python + SQL.", "build": "Three weak answers written."}, {"day": 29, "date": "2026-11-15", "focus": "#git-flow PR hygiene.", "build": "Protected main, if the repo is yours."}, {"day": 30, "date": "2026-11-16", "focus": "Month close: Compose demo, tenant test, resume, 20+ applications cumulative.", "build": "Tag v0.1.0."}, {"day": 35, "date": "2026-11-21", "focus": "Project 4 DLQ and retry with jitter.", "build": "Failed job visible."}, {"day": 40, "date": "2026-11-26", "focus": "#cicd-gha pytest on PR.", "build": "Project 5 green check."}, {"day": 45, "date": "2026-12-01", "focus": "#obs-prod JSON logs and request_id.", "build": "One broken request traced."}, {"day": 50, "date": "2026-12-06", "focus": "#aws-core study plus the smallest real deploy you can pay for or a documented local-prod.", "build": "Project 6 architecture note. Do not claim ECS if you used EC2."}, {"day": 55, "date": "2026-12-11", "focus": "#sd-pay and #sd-notify on paper.", "build": "Two diagrams in /designs."}, {"day": 60, "date": "2026-12-16", "focus": "#ai-literacy #ai-api streaming endpoint with usage log.", "build": "20-question eval file. Keys in env."}, {"day": 70, "date": "2026-12-26", "focus": "#ai-prompt structured output. Cost note.", "build": "Prompt version in git."}, {"day": 80, "date": "2027-01-05", "focus": "Mocks twice a week. DSA maintenance. Keep applying.", "build": "Application tracker review."}, {"day": 90, "date": "2027-01-15", "focus": "₹20 LPA gate: FastAPI service, tests, Docker, one LLM endpoint, honest Laravel stories.", "build": "Capstone not required. RAG is next, not a blocker for the first ₹20 LPA conversations."}], "later": ["Days 90–120: #ai-ingest #ai-embed #ai-pgvector #ai-rag with citations and tenant filters. Project 7–8.", "Then #ai-eval to 100 questions, #ai-sec, #ai-obs. That is the v4 week-24 spirit, compressed only if the API is already real.", "₹30 LPA conversations after you can defend retrieval quality, cost, and a failure. Not on day 90 by default.", "Projects 9–10, #ai-tools #ai-mcp after RAG. #iac-tf #k8s-fund #Kafka only if a target role names them.", "Kafka reference stays [Apache Kafka docs](https://kafka.apache.org/documentation/) until you have a reason to run it."], "projects": [{"id": "p1", "title": "1 · CLI inspector, packaged and tested", "problem": "You will ingest files later. Today you need a tested command that reads a path, prints encoding and byte size, and fails closed on a missing file.", "blocks": [{"h": "Scope", "ul": ["Python package", "pytest", "no network", "maps to the text inspector in roadmap v4 week 2"]}, {"h": "Folder", "code": "src/assistant_cli/\ntests/\npyproject.toml"}, {"h": "Done when", "ul": ["`python -m pytest` is green", "README has install steps", "You can explain pathlib vs open()"]}, {"h": "Stretch", "ul": ["Detect a likely PDF by magic bytes without parsing it"]}, {"h": "Interview", "ul": ["Why packaging before FastAPI?", "How do you test a CLI without OS noise?"]}]}, {"id": "p2", "title": "2 · FastAPI CRUD with PostgreSQL", "problem": "A tenant stores document metadata. List, get, create. This is the Laravel API you already know, in Python.", "blocks": [{"h": "API", "ul": ["POST /v1/documents", "GET /v1/documents", "GET /v1/documents/{id}", "consistent 422 body"]}, {"h": "Schema", "ul": ["tenants", "users", "documents(id, tenant_id, title, created_at)"]}, {"h": "Security", "ul": ["No cross-tenant get", "SQL parameters only"]}, {"h": "Done when", "ul": ["Alembic migrations", "TestClient coverage", "OpenAPI matches the routes"]}, {"h": "Interview", "ul": ["Eloquent vs SQLAlchemy session", "Where does pagination live?"]}]}, {"id": "p3", "title": "3 · Auth and authorization API", "problem": "Org membership must be enforced on every query. Practice JWT or a signed session. Label it practice on the resume until it has been in production.", "blocks": [{"h": "Requirements", "ul": ["Register/login", "password hash", "RBAC: owner vs member", "tenant check in SQL"]}, {"h": "Done when", "ul": ["Failing test for org B reading org A", "Secrets only in env"]}, {"h": "Interview", "ul": ["How is this different from Ugro roles on one account?"]}]}, {"id": "p4", "title": "4 · Notification worker", "problem": "Document events fan out to a fake SMS/email provider. Duplicates must not double-send.", "blocks": [{"h": "Flow", "ul": ["API writes outbox row", "worker claims row", "provider call with timeout", "processed_id unique"]}, {"h": "Done when", "ul": ["Retry twice then DLQ", "Idempotent consumer test"]}, {"h": "Compare", "p": ["Laravel ShouldQueue and failed_jobs. SNS on the resume is not this worker unless you actually used it this way."]}]}, {"id": "p5", "title": "5 · Docker and CI", "problem": "A reviewer clones the repo and runs Compose. GitHub Actions runs pytest.", "blocks": [{"h": "Done when", "ul": ["Non-root image", "compose healthchecks", "PR fails on red tests"]}]}, {"id": "p6", "title": "6 · Deployed API with logs", "problem": "The same repo on AWS or an honest local-prod. Architecture README. Cost note.", "blocks": [{"h": "Allowed claims", "ul": ["Only services you operated. EC2+Nginx is valid. ECS only after you use it."]}, {"h": "Done when", "ul": ["HTTPS", "request_id in logs", "rollback sentence written"]}]}, {"id": "p7", "title": "7 · Ingestion and semantic search", "problem": "PDFs become chunks with embeddings. Search is tenant-scoped.", "blocks": [{"h": "Done when", "ul": ["Bad PDF recorded as failed", "Original in object storage", "Search SQL includes tenant_id"]}]}, {"id": "p8", "title": "8 · RAG with citations, evals, cost", "problem": "Answer only from retrieved chunks. Cite ids. 100-question suite later; 20 at first LLM week.", "blocks": [{"h": "Done when", "ul": ["Empty retrieval refuses", "Cost per request logged", "Eval in CI"]}]}, {"id": "p9", "title": "9 · Bounded tool-calling workflow", "problem": "The assistant may search or create a ticket-shaped record. Writes need approval. No shell tool.", "blocks": [{"h": "Done when", "ul": ["Raw loop you can draw", "Allowlist", "Audit row"]}]}, {"id": "p10", "title": "10 · Capstone: the same product, hardened", "problem": "Auth, Postgres, Redis, worker, Docker, deploy, RAG, evals. One README story.", "blocks": [{"h": "Done when", "ul": ["Threat model page", "5-minute spoken demo", "Resume lists only what is in the repo plus Laravel work"]}, {"h": "Stretch", "ul": ["MCP server", "one LoRA comparison note", "never required for the first ₹20 LPA screen"]}]}], "interviews": [{"id": "q-py-1", "cat": "Python", "level": "core", "topic": "py-functions", "q": "Why is a mutable default argument a bug?", "hint": "Bound once at import. Show add_tag with bucket=[]."}, {"id": "q-py-2", "cat": "Python", "level": "core", "topic": "py-classes", "q": "ABC versus Protocol?", "hint": "ABC is inheritance. Protocol is structural. Duck typing."}, {"id": "q-py-3", "cat": "Python", "level": "core", "topic": "py-async", "q": "When does asyncio not help?", "hint": "CPU-bound work still holds the GIL. Use processes or a worker."}, {"id": "q-py-4", "cat": "Python", "level": "core", "topic": "py-decorators", "q": "What does functools.wraps save?", "hint": "__name__ and __doc__ of the wrapped function."}, {"id": "q-dsa-1", "cat": "DSA", "level": "core", "topic": "dsa-hash", "q": "Two sum: brute force then O(n).", "hint": "Hash map of value to index."}, {"id": "q-dsa-2", "cat": "DSA", "level": "core", "topic": "dsa-dp", "q": "Walk your edit-distance table for cat vs cats.", "hint": "Last cell is 1. You already printed this."}, {"id": "q-dsa-3", "cat": "DSA", "level": "core", "topic": "dsa-two-pointers", "q": "Longest substring without repeating characters.", "hint": "Accenture Day 10. Sliding window + last seen index."}, {"id": "q-api-1", "cat": "API", "level": "core", "topic": "http-rest", "q": "When is POST idempotent?", "hint": "Only with a stored Idempotency-Key or a natural event id."}, {"id": "q-api-2", "cat": "API", "level": "core", "topic": "fastapi-core", "q": "What does FastAPI do with a Pydantic body?", "hint": "Validates, 422s, documents OpenAPI."}, {"id": "q-api-3", "cat": "API", "level": "core", "topic": "auth-core", "q": "JWT versus the session model on Ugro.", "hint": "Do not claim you shipped JWT. Draw both."}, {"id": "q-sql-1", "cat": "SQL", "level": "core", "topic": "sql-query", "q": "How do you find a slow Laravel or FastAPI query?", "hint": "Slow log, EXPLAIN ANALYZE, index matching WHERE and ORDER, tenant_id in the index."}, {"id": "q-sql-2", "cat": "SQL", "level": "core", "topic": "sql-schema", "q": "Why is money not a float?", "hint": "Accenture Day 13. Decimal or integer paise."}, {"id": "q-sql-3", "cat": "SQL", "level": "core", "topic": "sql-query", "q": "Second highest amount and duplicate emails.", "hint": "Write both on paper. Window or MAX subquery."}, {"id": "q-lar-1", "cat": "Laravel bridge", "level": "core", "topic": "career-backend-iv", "q": "Map a Laravel request to FastAPI.", "hint": "index.php / kernel / middleware / route → uvicorn / middleware / Depends / path operation."}, {"id": "q-lar-2", "cat": "Laravel bridge", "level": "core", "topic": "jobs-queues", "q": "queue:work versus a Python worker.", "hint": "Separate process, retries, failed jobs, idempotency."}, {"id": "q-lar-3", "cat": "Laravel bridge", "level": "core", "topic": "career-story", "q": "Tell Religare in two minutes.", "hint": "Oracle procedures, Laravel portal, cache, throttle. No invented timings."}, {"id": "q-sd-1", "cat": "System design", "level": "senior", "topic": "sd-pay", "q": "Payment states and duplicate webhooks.", "hint": "Never trust the browser return. Event id unique."}, {"id": "q-sd-2", "cat": "System design", "level": "senior", "topic": "sd-ai-search", "q": "Where does tenant isolation live in RAG?", "hint": "SQL filter on chunks, not the prompt."}, {"id": "q-sd-3", "cat": "System design", "level": "senior", "topic": "sd-notify", "q": "Design notifications for 100k/day.", "hint": "Outbox, queue, provider timeouts, DLQ."}, {"id": "q-aws-1", "cat": "AWS and Docker", "level": "core", "topic": "aws-core", "q": "What is a security group?", "hint": "Stateful firewall. 443 public, SSH limited, DB private."}, {"id": "q-aws-2", "cat": "AWS and Docker", "level": "core", "topic": "docker-core", "q": "Image versus container versus Compose.", "hint": "Recipe, process, multi-process network."}, {"id": "q-aws-3", "cat": "AWS and Docker", "level": "core", "topic": "aws-core", "q": "SNS versus SQS in one sentence each.", "hint": "Fan-out vs queue. Claim only what you operated."}, {"id": "q-ai-1", "cat": "AI applications", "level": "senior", "topic": "ai-rag", "q": "Why can RAG still hallucinate?", "hint": "Bad chunks, missing filter, model ignores context. Eval catches it."}, {"id": "q-ai-2", "cat": "AI applications", "level": "senior", "topic": "ai-sec", "q": "Indirect prompt injection from a PDF.", "hint": "Untrusted text. Tool allowlists. Never follow document instructions as policy."}, {"id": "q-ai-3", "cat": "AI applications", "level": "senior", "topic": "ai-ft", "q": "When would you fine-tune instead of RAG?", "hint": "Stable style/schema, documents change rarely, you measured RAG first."}, {"id": "q-bh-1", "cat": "Behavioral", "level": "core", "topic": "career-story", "q": "Walk me through four years without the 2018–2022 fog.", "hint": "June 2022 job. 2018 training. A true gap sentence you wrote."}, {"id": "q-bh-2", "cat": "Behavioral", "level": "core", "topic": "career-story", "q": "A production incident you owned.", "hint": "Symptom, mitigate, cause, fix, monitor. Real only."}, {"id": "q-neg-1", "cat": "Negotiation", "level": "core", "topic": "career-search", "q": "Current CTC and expected CTC.", "hint": "₹7 LPA current. Ask a band ₹15–20 LPA. No apology speech. No fake competing offers."}, {"id": "q-neg-2", "cat": "Negotiation", "level": "core", "topic": "career-search", "q": "They offer ₹12 LPA.", "hint": "Restate scope, unique Laravel+Python evidence, your number, notice period. Walk away math is personal."}], "refs": [{"title": "Python", "url": "https://docs.python.org/3/", "why": "Language, stdlib, typing."}, {"title": "Python tutorial", "url": "https://docs.python.org/3/tutorial/", "why": "Skip if diagnostic is fluent; use as lookup."}, {"title": "FastAPI", "url": "https://fastapi.tiangolo.com/", "why": "Primary web framework for new work."}, {"title": "Pydantic", "url": "https://docs.pydantic.dev/", "why": "Request and response models."}, {"title": "pytest", "url": "https://docs.pytest.org/", "why": "Tests."}, {"title": "SQLAlchemy", "url": "https://docs.sqlalchemy.org/", "why": "ORM and Core."}, {"title": "PostgreSQL", "url": "https://www.postgresql.org/docs/", "why": "SQL and pg internals."}, {"title": "Redis", "url": "https://redis.io/docs/", "why": "Cache and simple queues."}, {"title": "Docker", "url": "https://docs.docker.com/", "why": "Images and Compose."}, {"title": "GitHub Actions", "url": "https://docs.github.com/actions", "why": "CI."}, {"title": "AWS documentation", "url": "https://docs.aws.amazon.com/", "why": "IAM, EC2, S3, RDS, SQS, SNS, CloudWatch."}, {"title": "Kubernetes", "url": "https://kubernetes.io/docs/", "why": "Optional after Docker."}, {"title": "Terraform", "url": "https://developer.hashicorp.com/terraform/docs", "why": "Optional IaC."}, {"title": "OpenTelemetry", "url": "https://opentelemetry.io/docs/", "why": "Traces and metrics ideas."}, {"title": "OpenAI API", "url": "https://platform.openai.com/docs/", "why": "LLM HTTP API."}, {"title": "Model Context Protocol", "url": "https://modelcontextprotocol.io/", "why": "Tool servers, later."}, {"title": "Hugging Face docs", "url": "https://huggingface.co/docs", "why": "Embeddings and PEFT literacy."}, {"title": "pgvector", "url": "https://github.com/pgvector/pgvector", "why": "Vectors in PostgreSQL."}, {"title": "OWASP", "url": "https://owasp.org/", "why": "Web risks."}, {"title": "MDN HTTP", "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP", "why": "Protocol."}, {"title": "Apache Kafka", "url": "https://kafka.apache.org/documentation/", "why": "After the apply gate, if a role needs logs at that scale."}, {"title": "roadmap.sh system design", "url": "https://roadmap.sh/system-design", "why": "Map, not a substitute for your six designs."}, {"title": "roadmap.sh AI engineer", "url": "https://roadmap.sh/ai-engineer", "why": "Application track, not ML research."}, {"title": "Public v4 roadmap", "url": "https://kanhaiyathakur1941.github.io/careerupgrade/", "why": "Outline only. This folder is the lesson body."}], "continuityHtml": "\n\u003csection>\n\u003ch1>Previous course continuity\u003c/h1>\n\u003cp>Inspected on 18 October 2026. Existing files were not overwritten. Completion boxes live in other browsers' localStorage, so \u003cstrong>nothing is pre-ticked here\u003c/strong>.\u003c/p>\n\n\u003cdiv class=\"callout warn\">\u003cstrong>Discrepancy.\u003c/strong> The public v4 page can look like a finished curriculum. It is an outline with checklists. There is no local Python Day 1–Day 5 lesson series. Accenture Days 1–14 are a PHP interview sprint dated 5–18 October 2026. Those two tracks are different. Upgrade 2026 starts at the Python diagnostic, not at Accenture day 15.\u003c/div>\n\n\u003ch2>Files inspected\u003c/h2>\n\u003cdiv class=\"scroll\">\u003ctable>\n\u003cthead>\u003ctr>\u003cth>Path\u003c/th>\u003cth>What it is\u003c/th>\u003cth>Progress evidence\u003c/th>\u003c/tr>\u003c/thead>\n\u003ctbody>\n\u003ctr>\u003ctd>Desktop/careerupgrade/index.html\u003c/td>\u003ctd>Roadmap v4, 32 weeks, one document-assistant product, apply at week 24\u003c/td>\u003ctd>Checkboxes; not readable from disk. Treat as 0% until you import an export.\u003c/td>\u003c/tr>\n\u003ctr>\u003ctd>Downloads/career_upgrade_roadmap_v3.html and v2\u003c/td>\u003ctd>Earlier 40-week outlines\u003c/td>\u003ctd>v4 already lists what it kept.\u003c/td>\u003c/tr>\n\u003ctr>\u003ctd>Desktop/careerupgrade/Accenture/accenture-fullstack-roadmap.html\u003c/td>\u003ctd>Days 1–14 plus weeks 3–8 for Accenture PHP Full Stack Engineer\u003c/td>\u003ctd>Day 1 fit map through Day 5 Laravel lifecycle, then Days 6–14 REST, SQL, queues, cache, JWT, OAuth2, OpenAPI, serialization, checkpoint. Ticks unverified.\u003c/td>\u003c/tr>\n\u003ctr>\u003ctd>Accenture/accenture-gap-analysis.md and resume HTML\u003c/td>\u003ctd>Do-not-claim list, Gomilestone from June 2022, 2018 training separate\u003c/td>\u003ctd>Rules carried into the context page. Degree B.Tech vs older BCA PDFs still unresolved in that note.\u003c/td>\u003c/tr>\n\u003ctr>\u003ctd>PyCharmMiscProject/abstraction.py\u003c/td>\u003ctd>Car class with move/stop\u003c/td>\u003ctd>Shows basic OOP. Not completion of the OOP module.\u003c/td>\u003c/tr>\n\u003ctr>\u003ctd>abstractex.py\u003c/td>\u003ctd>ABC example fully commented out\u003c/td>\u003ctd>ABC is open.\u003c/td>\u003c/tr>\n\u003ctr>\u003ctd>script.py\u003c/td>\u003ctd>Edit distance; prints 1 for cat/cats\u003c/td>\u003ctd>DP beginner evidence. Keep the idea, re-test in the new repo.\u003c/td>\u003c/tr>\n\u003ctr>\u003ctd>knapsackzeroonebyset.py\u003c/td>\u003ctd>Empty def plus commented solution\u003c/td>\u003ctd>Knapsack is not done.\u003c/td>\u003c/tr>\n\u003ctr>\u003ctd>Nursery Laravel workspace\u003c/td>\u003ctd>Unrelated product\u003c/td>\u003ctd>Ignored for this plan.\u003c/td>\u003c/tr>\n\u003c/tbody>\u003c/table>\u003c/div>\n\n\u003ch2>What was carried over\u003c/h2>\n\u003cul>\n\u003cli>One repository, one multi-tenant document assistant.\u003c/li>\n\u003cli>Laravel as proof of production; Python as the language of new systems.\u003c/li>\n\u003cli>No ML Engineer track. Small transformer literacy only.\u003c/li>\n\u003cli>Kafka and Kubernetes after a working deploy.\u003c/li>\n\u003cli>Apply before the last week of a long outline. This plan applies from week 3 for Laravel-plus-Python roles, and treats a defendable RAG system as the ₹30 LPA conversation, not as a gate that delays every application.\u003c/li>\n\u003cli>Accenture PHP days stay in Desktop/careerupgrade/Accenture. Use them if that posting is still live. They do not mark Python topics done.\u003c/li>\n\u003c/ul>\n\n\u003ch2>What was added or corrected\u003c/h2>\n\u003cul>\n\u003cli>Lesson bodies with examples, not only week titles.\u003c/li>\n\u003cli>₹20 LPA in 3–6 months as the near target, with ₹15 LPA as the lower band of the same search.\u003c/li>\n\u003cli>v4's \"apply at week 24\" kept as the RAG/₹30 LPA gate, not as the first time you may talk to companies.\u003c/li>\n\u003cli>Diagnostic as lesson one, because no Python day files existed.\u003c/li>\n\u003cli>Interview questions on their own tab.\u003c/li>\n\u003cli>Progress bars for the whole curriculum, each phase, each module, and projects.\u003c/li>\n\u003c/ul>\n\n\u003ch2>Assumptions\u003c/h2>\n\u003cul>\n\u003cli>About 5 hours on days you actually have them. The calendar still lists days so you can slide, not skip.\u003c/li>\n\u003cli>Current CTC about ₹7 LPA is what you stated. Compensation is never guaranteed by a study file.\u003c/li>\n\u003cli>GitHub URL still missing until you add one in context notes.\u003c/li>\n\u003c/ul>\n\n\u003ch2>Thinner lessons (still real, shorter than the 90-day core)\u003c/h2>\n\u003cul>\n\u003cli>Optional: Terraform, Kubernetes, MCP, LoRA comparison, Kafka (reference only until needed).\u003c/li>\n\u003cli>Advanced system designs for ecommerce go as deep as your Fit Paradox/Groplus facts allow. No invented metrics.\u003c/li>\n\u003cli>You can lengthen any topic later by editing source/*.py and running python3 source/build.py.\u003c/li>\n\u003c/ul>\n\n\u003ch2>Next recommended lesson\u003c/h2>\n\u003cp>\u003ca href=\"#topic/py-diagnostic\">py-diagnostic\u003c/a> — 45 minutes, closed book, 18 October 2026. Then functions or classes as the diagnostic says.\u003c/p>\n\u003c/section>\n"}</script>
+<script>
+const DATA = JSON.parse(document.getElementById("curriculum-data").textContent);
+const KEY = "upgrade2026-progress-v1";
+const START = "2026-10-18";
+const views = ["dashboard","curriculum","plan","projects","interviews","context","continuity","refs"];
+
+function loadState(){
+  try { return Object.assign(blank(), JSON.parse(localStorage.getItem(KEY) || "{}")); }
+  catch { return blank(); }
+}
+function blank(){
+  return {topics:{}, projects:{}, answers:{}, daily:{}, context:{
+    years:"about 4.5", ctc:"7", target:"20", hours:"5", location:"", notice:"",
+    note:"Laravel, PHP, intermediate Python, SQL, PostgreSQL, Linux, AWS, REST, and production web apps. JavaScript, React/Vue, MySQL, Nginx, Jenkins, and Docker fundamentals are exposure, not a second career."
+  }, theme:"light"};
+}
+let state = loadState();
+function save(){ localStorage.setItem(KEY, JSON.stringify(state)); paintProgress(); }
+function allTopics(){ return DATA.phases.flatMap(p => p.modules.flatMap(m => m.topics.map(t => Object.assign({phase:p.title, module:m.title, moduleId:m.id}, t)))); }
+function topicById(id){ return allTopics().find(t => t.id === id); }
+function statusOf(id){ return (state.topics[id] && state.topics[id].status) || ""; }
+function daysSince(iso){
+  if(!iso) return 0;
+  const a = new Date(iso.slice(0,10)+"T00:00:00");
+  const b = new Date(); b.setHours(0,0,0,0);
+  return Math.floor((b-a)/86400000);
+}
+function revisionDue(id){
+  const row = state.topics[id];
+  if(!row) return false;
+  if(row.status === "revision") return true;
+  if(row.status === "done" && daysSince(row.revisedAt || row.at) >= 14) return true;
+  return false;
+}
+function esc(s){ return String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function inline(s){
+  let t = esc(s);
+  t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  t = t.replace(/`([^`]+)`/g, '<code>$1</code>');
+  t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  t = t.replace(/#([a-z0-9-]+)/g, (m,id) => topicById(id) ? `<a href="#topic/${id}">${esc(topicById(id).title)}</a>` : m);
+  return t;
+}
+function slug(s){ return String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+
+function setTheme(theme){
+  state.theme = theme;
+  document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
+  save();
+}
+document.documentElement.dataset.theme = state.theme === "dark" ? "dark" : "light";
+
+function paintProgress(){
+  const topics = allTopics();
+  const done = topics.filter(t => statusOf(t.id) === "done").length;
+  const pct = topics.length ? Math.round(done / topics.length * 100) : 0;
+  ["overallPct","overallPctMobile"].forEach(id => { const n = document.getElementById(id); if(n) n.textContent = pct + "% · " + done + "/" + topics.length; });
+  ["overallFill","overallFillMobile"].forEach(id => { const n = document.getElementById(id); if(n) n.style.width = pct + "%"; });
+  const bar = document.getElementById("overallBar");
+  if(bar){ bar.setAttribute("aria-valuenow", String(pct)); bar.setAttribute("aria-label", pct + " percent of topics done"); }
+  const box = document.getElementById("moduleBars");
+  if(!box) return;
+  box.innerHTML = DATA.phases.map(p => p.modules.map(m => {
+    const d = m.topics.filter(t => statusOf(t.id) === "done").length;
+    const pctx = m.topics.length ? Math.round(d / m.topics.length * 100) : 0;
+    return `<div style="margin:8px 0"><div class="progress-label"><span>${esc(m.title)}</span><span>${pctx}%</span></div><div class="track"><span style="width:${pctx}%"></span></div></div>`;
+  }).join("")).join("");
+}
+
+function filteredTopics(){
+  const q = (document.getElementById("search")?.value || "").trim().toLowerCase();
+  const level = document.getElementById("filterLevel")?.value || "";
+  const priority = document.getElementById("filterPriority")?.value || "";
+  return allTopics().filter(t => {
+    if(level && t.level !== level) return false;
+    if(priority && t.priority !== priority) return false;
+    if(!q) return true;
+    const blob = (t.title + " " + t.summary + " " + JSON.stringify(t.blocks)).toLowerCase();
+    return blob.includes(q);
+  });
+}
+
+function currentTopicId(){
+  const raw = location.hash.replace(/^#/, "");
+  if(!raw.startsWith("topic/")) return "";
+  return decodeURIComponent(raw.split("/")[1] || "");
+}
+
+function renderNav(){
+  const allow = new Set(filteredTopics().map(t => t.id));
+  const tree = document.getElementById("navTree");
+  const open = state.openModules || {};
+  const activeId = currentTopicId();
+  tree.innerHTML = DATA.phases.map(p => {
+    const mods = p.modules.map(m => {
+      const items = m.topics.filter(t => allow.has(t.id));
+      if(!items.length) return "";
+      const hasActive = items.some(t => t.id === activeId);
+      const isOpen = hasActive || open[m.id] !== false;
+      return `<div class="mod"><button type="button" aria-expanded="${isOpen}" data-mod="${m.id}">${esc(m.title)}</button>
+        <ul class="${isOpen ? "" : "hidden"}">${items.map(t => {
+          const st = statusOf(t.id);
+          const cur = t.id === activeId ? ' aria-current="true"' : "";
+          return `<li><a href="#topic/${t.id}"${cur}><span class="dot ${st}"></span><span>${esc(t.title)}</span></a></li>`;
+        }).join("")}</ul></div>`;
+    }).join("");
+    return mods ? `<p class="phase-label">${esc(p.title)}</p>${mods}` : "";
+  }).join("");
+  tree.querySelectorAll("[data-mod]").forEach(btn => btn.addEventListener("click", () => {
+    state.openModules = state.openModules || {};
+    const id = btn.dataset.mod;
+    const expanded = btn.getAttribute("aria-expanded") === "true";
+    state.openModules[id] = !expanded;
+    save(); renderNav();
+  }));
+}
+
+function setNavHighlight(name){
+  const map = {dashboard:"dashboard", curriculum:"curriculum", plan:"plan", projects:"projects", interviews:"interviews", context:"context", continuity:"continuity", refs:"refs"};
+  const key = map[name] || "dashboard";
+  document.querySelectorAll("[data-nav]").forEach(el => {
+    const n = el.getAttribute("data-nav");
+    const on = n === key || (key === "curriculum" && n === "curriculum");
+    el.setAttribute("aria-current", on ? "page" : "false");
+  });
+}
+
+function syncHeader(){
+  const h = document.getElementById("appHeader");
+  if(h) document.documentElement.style.setProperty("--header-h", h.offsetHeight + "px");
+}
+
+function route(){
+  const raw = location.hash.replace(/^#/, "") || "dashboard";
+  const [head, encoded] = raw.split("/");
+  const arg = encoded ? decodeURIComponent(encoded) : "";
+  const name = head === "topic" ? "curriculum" : (views.includes(head) ? head : "dashboard");
+  const showLessonNav = name === "curriculum";
+  setNavHighlight(name);
+  document.querySelectorAll(".tabs a").forEach(a => a.setAttribute("aria-current", a.getAttribute("data-nav") === name ? "page" : "false"));
+  const layout = document.getElementById("layout");
+  layout.classList.toggle("solo", !showLessonNav);
+  layout.classList.toggle("with-curriculum", showLessonNav);
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("hidden", !showLessonNav);
+  const menuBtn = document.getElementById("menuBtn");
+  menuBtn.classList.toggle("hidden", !showLessonNav);
+  closeDrawer();
+  closeSheet();
+  const main = document.getElementById("mainInner");
+  if(head === "topic" && topicById(arg)) main.innerHTML = topicHtml(topicById(arg));
+  else if(name === "dashboard") main.innerHTML = dashboardHtml();
+  else if(name === "curriculum") main.innerHTML = curriculumHome();
+  else if(name === "plan") main.innerHTML = planHtml();
+  else if(name === "projects") main.innerHTML = projectsHtml();
+  else if(name === "interviews") main.innerHTML = interviewsHtml(arg);
+  else if(name === "context") main.innerHTML = contextHtml();
+  else if(name === "continuity") main.innerHTML = DATA.continuityHtml;
+  else if(name === "refs") main.innerHTML = refsHtml();
+  else main.innerHTML = dashboardHtml();
+  bind(main);
+  renderNav();
+  paintProgress();
+  syncHeader();
+  window.scrollTo(0, 0);
+  document.getElementById("main").focus({preventScroll:true});
+}
+
+function counts(){
+  const topics = allTopics();
+  return {
+    total: topics.length,
+    done: topics.filter(t => statusOf(t.id)==="done").length,
+    progress: topics.filter(t => statusOf(t.id)==="progress").length,
+    revision: topics.filter(t => revisionDue(t.id)).length,
+    left: topics.filter(t => statusOf(t.id)!=="done").length
+  };
+}
+
+function dashboardHtml(){
+  const c = counts();
+  const essential = allTopics().filter(t => t.priority==="essential");
+  const ed = essential.filter(t => statusOf(t.id)==="done").length;
+  const ep = essential.length ? Math.round(ed/essential.length*100) : 0;
+  const due = allTopics().filter(t => revisionDue(t.id));
+  const day = studyDay();
+  return `<section class="view">
+    <p class="pill">Next lesson is unverified until you pass it</p>
+    <h1>Dashboard</h1>
+    <p class="muted">Nothing is marked done because an old roadmap mentioned it. Progress is only what you set in this browser.</p>
+    <div class="quick-actions noprint">
+      <a class="btn primary" href="#topic/py-diagnostic">Continue: diagnostic</a>
+      <a class="btn" href="#curriculum">Browse curriculum</a>
+      <a class="btn" href="#plan">Today’s plan</a>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="kpi">${c.done}</div><div class="muted">Done</div></div>
+      <div class="card"><div class="kpi">${c.progress}</div><div class="muted">In progress</div></div>
+      <div class="card"><div class="kpi">${c.left}</div><div class="muted">Not done</div></div>
+      <div class="card"><div class="kpi">${c.revision}</div><div class="muted">Revision due</div></div>
+    </div>
+    <h2>Essential path</h2>
+    <div class="progress-label"><span>Essential topics done</span><span>${ep}% · ${ed}/${essential.length}</span></div>
+    <div class="track" style="margin:6px 0 12px"><span style="width:${ep}%"></span></div>
+    ${DATA.phases.map(p => {
+      const ts = p.modules.flatMap(m => m.topics);
+      const d = ts.filter(t => statusOf(t.id)==="done").length;
+      const pct = ts.length ? Math.round(d/ts.length*100) : 0;
+      return `<div class="progress-label"><span>${esc(p.title)}</span><span>${pct}%</span></div><div class="track" style="margin:4px 0 10px"><span style="width:${pct}%"></span></div>`;
+    }).join("")}
+    <div class="callout good"><strong>Study day ${day.n} · ${day.date}.</strong> ${inline(day.text)} Open <a href="#topic/py-diagnostic">the diagnostic</a> if you have not passed it. Applications start in week 3, not after the last project.</div>
+    <h2>Today’s 5-hour checklist</h2>
+    <div class="card" id="dailyCard">${dailyChecks()}</div>
+    <h2>Revision</h2>
+    ${due.length ? `<ul>${due.map(t => `<li><a href="#topic/${t.id}">${esc(t.title)}</a> <span class="muted">${esc(statusOf(t.id)||"done")}</span></li>`).join("")}</ul>` : `<p>No revision flags yet. A done topic asks for revision after 14 days.</p>`}
+    <p class="noprint"><button class="btn" id="resetBtn" type="button">Reset all progress</button></p>
+  </section>`;
+}
+function studyDay(){
+  const start = new Date(START+"T00:00:00");
+  const now = new Date(); now.setHours(0,0,0,0);
+  const n = Math.max(1, Math.floor((now-start)/86400000)+1);
+  const row = DATA.plan.find(d => d.day === Math.min(n, 90)) || DATA.plan[DATA.plan.length-1];
+  return {n, date: now.toLocaleDateString(undefined,{weekday:"long", day:"numeric", month:"short", year:"numeric"}), text: row ? row.focus : "Keep the repo moving."};
+}
+function dailyChecks(){
+  const today = new Date().toISOString().slice(0,10);
+  const saved = state.daily[today] || {};
+  const items = [
+    ["learn","90 min — lesson, official doc plus the page for today"],
+    ["build","90 min — code in the document-assistant repo"],
+    ["drill","45 min — one SQL or DSA pattern, spoken aloud"],
+    ["revise","30 min — explain yesterday without notes"],
+    ["track","15 min — mark the topic and one application note if it is week 3+"]
+  ];
+  return items.map(([id,label]) => `<div class="check"><label><input type="checkbox" data-daily="${id}" ${saved[id]?"checked":""}> ${esc(label)}</label></div>`).join("") + `<p class="muted">Saved for ${esc(today)} only. Yesterday’s list resets.</p>`;
+}
+function curriculumHome(){
+  const rows = filteredTopics();
+  return `<section><h1>Curriculum</h1><p class="muted">${rows.length} topics match your filters. On phone, use the cards below or tap ☰ for the lesson menu.</p>
+    <div class="topic-cards mobile-only">
+    ${rows.map(t => `<a class="topic-card card-interactive" href="#topic/${t.id}"><strong>${esc(t.title)}</strong><span class="muted">${esc(t.module)} · ${esc(t.level)} · ${t.minutes} min</span></a>`).join("")}
+    </div>
+    <div class="scroll table-desktop"><table><thead><tr><th>Topic</th><th>Level</th><th>Priority</th><th>Minutes</th></tr></thead><tbody>
+    ${rows.map(t => `<tr><td><a href="#topic/${t.id}">${esc(t.title)}</a><div class="muted">${esc(t.module)}</div></td><td>${esc(t.level)}</td><td>${esc(t.priority)}</td><td>${t.minutes}</td></tr>`).join("")}
+    </tbody></table></div></section>`;
+}
+function topicHtml(t){
+  const idx = allTopics().findIndex(x => x.id === t.id);
+  const prev = allTopics()[idx-1];
+  const next = allTopics()[idx+1];
+  const toc = (t.blocks||[]).map(b => `<a href="#${slug(b.h)}">${esc(b.h)}</a>`).join("");
+  const body = (t.blocks||[]).map(b => `<section id="${slug(b.h)}"><h2>${esc(b.h)}</h2>
+    ${(b.p||[]).map(p => `<p>${inline(p)}</p>`).join("")}
+    ${b.ul ? `<ul>${b.ul.map(li => `<li>${inline(li)}</li>`).join("")}</ul>` : ""}
+    ${b.ol ? `<ol>${b.ol.map(li => `<li>${inline(li)}</li>`).join("")}</ol>` : ""}
+    ${b.code ? `<pre><code>${esc(b.code)}</code></pre>` : ""}
+    ${b.out ? `<p class="callout"><strong>Expected.</strong> ${inline(b.out)}</p>` : ""}
+  </section>`).join("");
+  const st = statusOf(t.id);
+  return `<article>
+    <p class="muted">${esc(t.phase)} · ${esc(t.module)}</p>
+    <div class="topic-head"><h1 id="${t.id}">${esc(t.title)}</h1></div>
+    <div class="meta">
+      <span class="pill">${esc(t.level)}</span>
+      <span class="pill ${t.priority==="optional"?"opt":""} ${t.priority==="advanced"?"adv":""}">${esc(t.priority)}</span>
+      <span class="pill">${t.minutes} min</span>
+      <span class="pill">ID ${esc(t.id)}</span>
+    </div>
+    <p>${inline(t.summary)}</p>
+    <nav class="toc card" aria-label="On this page">${toc}</nav>
+    <div class="status-row noprint" role="group" aria-label="Topic status">
+      ${["","progress","done","revision"].map(s => `<button class="btn${st===s?" active":""}" data-status="${s}" aria-pressed="${st===s}">${s? (s==="progress"?"In progress": s==="done"?"Done":"Revision") : "Not started"}</button>`).join("")}
+      <button class="btn ghost" type="button" id="revisedBtn">Revised today</button>
+    </div>
+    ${body}
+    <div class="pager noprint">
+      ${prev ? `<a class="btn" href="#topic/${prev.id}">Previous: ${esc(prev.title)}</a>` : ""}
+      ${next ? `<a class="btn" href="#topic/${next.id}">Next: ${esc(next.title)}</a>` : ""}
+      <a class="btn" href="#interviews">Interview tab</a>
+    </div>
+  </article>`;
+}
+function planHtml(){
+  return `<section><h1>Study plan</h1>
+    <div class="callout warn"><strong>Market frame.</strong> ₹20 LPA in 3–6 months is a hiring target for a developer who already ships Laravel and can defend a Python API. It is not guaranteed by finishing this file. ₹30 LPA waits until the document assistant, including retrieval and evals, is explainable. Do not wait for week 24 of the old roadmap before you apply.</div>
+    <h2>Daily 5-hour template</h2>
+    <ol>
+      <li>90 minutes — one topic. Read the official page linked on it, then this lesson.</li>
+      <li>90 minutes — implement that idea in the one repository.</li>
+      <li>30 minutes — break. Leave the desk.</li>
+      <li>45 minutes — SQL or a DSA pattern, with the complexity said out loud.</li>
+      <li>30 minutes — revise yesterday with no notes.</li>
+      <li>15 minutes — checklist, and from week 3 a short application log.</li>
+    </ol>
+    <p>If the code is unfinished, do not open a new theory topic.</p>
+    <h2>First 14 days, from 18 October 2026</h2>
+    ${planTable(DATA.plan.filter(d => d.day <= 14))}
+    <h2>30-day close</h2>
+    ${planTable(DATA.plan.filter(d => d.day > 14 && d.day <= 30))}
+    <h2>Days 31–90</h2>
+    ${planTable(DATA.plan.filter(d => d.day > 30))}
+    <h2>After day 90</h2>
+    <ul>${DATA.later.map(x => `<li>${inline(x)}</li>`).join("")}</ul>
+  </section>`;
+}
+function planTable(rows){
+  return `<div class="scroll"><table><thead><tr><th>Day</th><th>Focus</th><th>Build</th></tr></thead><tbody>${rows.map(d => `<tr><td>${d.day}<div class="muted">${esc(d.date||"")}</div></td><td>${inline(d.focus)}</td><td>${inline(d.build)}</td></tr>`).join("")}</tbody></table></div>`;
+}
+function projectsHtml(){
+  return `<section><h1>Project ladder</h1><p>One repository: a multi-tenant document assistant. Each project is a milestone of that repo. Python for new code. Laravel is the comparison, not the new implementation.</p>
+  ${DATA.projects.map(p => {
+    const st = state.projects[p.id] || "";
+    return `<article class="card" style="margin:12px 0" id="${p.id}"><h2>${esc(p.title)}</h2><p>${inline(p.problem)}</p>
+      <label>Status <select data-project="${p.id}">
+        <option value="" ${st===""?"selected":""}>Not started</option>
+        <option value="progress" ${st==="progress"?"selected":""}>In progress</option>
+        <option value="done" ${st==="done"?"selected":""}>Done</option>
+      </select></label>
+      ${(p.blocks||[]).map(b => `<h3>${esc(b.h)}</h3>${(b.p||[]).map(x=>`<p>${inline(x)}</p>`).join("")}${b.ul?`<ul>${b.ul.map(li=>`<li>${inline(li)}</li>`).join("")}</ul>`:""}${b.code?`<pre><code>${esc(b.code)}</code></pre>`:""}`).join("")}
+    </article>`;
+  }).join("")}
+  <p class="muted">Done ${Object.values(state.projects).filter(s=>s==="done").length} / ${DATA.projects.length}</p>
+  <div class="track"><span style="width:${Math.round(Object.values(state.projects).filter(s=>s==="done").length / DATA.projects.length * 100)}%"></span></div>
+  </section>`;
+}
+function interviewsHtml(cat){
+  const cats = [...new Set(DATA.interviews.map(q => q.cat))];
+  const list = DATA.interviews.filter(q => !cat || q.cat === cat);
+  return `<section><h1>Interview questions</h1>
+    <p>This is a separate tab from the lessons. Write answers in your own words. They stay in this browser.</p>
+    <div class="status-row">${cats.map(c => `<a class="btn" href="#interviews/${encodeURIComponent(c)}">${esc(c)}</a>`).join("")}<a class="btn" href="#interviews">All</a></div>
+    ${list.map(q => `<article class="card" style="margin:10px 0"><h2>${esc(q.q)}</h2><p class="muted">${esc(q.cat)} · ${esc(q.level)}</p><p>${inline(q.hint)}</p>
+      <label class="field">Your answer<textarea data-answer="${esc(q.id)}" rows="5">${esc(state.answers[q.id]||"")}</textarea></label>
+      ${q.topic ? `<p><a href="#topic/${q.topic}">Related lesson</a></p>` : ""}
+    </article>`).join("")}
+  </section>`;
+}
+function contextHtml(){
+  const c = state.context || {};
+  const fields = [["years","Years shipping software"],["ctc","Current CTC, LPA"],["target","Target ask, LPA"],["hours","Hours you can protect"],["location","City / relocation"],["notice","Notice period"]];
+  return `<section><h1>Personal context</h1><p>Edit this. It is the brief the rest of the plan assumes. Saving stays on this computer.</p>
+    ${fields.map(([k,label]) => `<label class="field">${esc(label)}<input data-context="${k}" value="${esc(c[k]||"")}"></label>`).join("")}
+    <label class="field">Notes<textarea data-context="note" rows="6">${esc(c.note||"")}</textarea></label>
+    <div class="callout"><strong>Do not claim</strong> production JWT, OAuth2, OpenAPI, Spring, Kubernetes administration, or a finished RAG system until you have built them. Gomilestone PHP/Laravel from June 2022 is the job. The 2018 stint was training. August 2018–May 2022 needs a true sentence you write yourself.</div>
+    <h2>How this target was chosen</h2>
+    <ul>
+      <li>₹15–20 LPA in months 1–6 is the screen you can reach by pairing shipped Laravel work with a tested FastAPI service.</li>
+      <li>₹20–25 LPA in that same window needs the API deployed and one LLM endpoint you can debug: timeouts, structured output, cost.</li>
+      <li>₹30 LPA is a later conversation, after retrieval, citations, tenant filters, and an eval file are real.</li>
+      <li>ML Engineer preparation is not this track.</li>
+    </ul>
+  </section>`;
+}
+function refsHtml(){
+  return `<section><h1>Official references</h1><p>Primary sources. YouTube can sit beside a doc, not instead of it.</p><ul>${DATA.refs.map(r => `<li><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a> — ${esc(r.why)}</li>`).join("")}</ul>
+    <h2>How to use this file</h2>
+    <ul>
+      <li>Open <code>career_upgrade_master_documentation.html</code> in a browser. No server.</li>
+      <li>Start at the diagnostic. Accenture day 15 is a different course.</li>
+      <li>Export JSON after a study week. Import restores this browser, or another one.</li>
+      <li>To change a lesson later, edit <code>source/</code> and run <code>python3 source/build.py</code> from the Upgrade2026 folder.</li>
+    </ul>
+  </section>`;
+}
+
+function bind(root){
+  root.querySelectorAll("[data-status]").forEach(btn => btn.addEventListener("click", () => {
+    const id = location.hash.split("/")[1];
+    const status = btn.dataset.status;
+    if(!status) delete state.topics[id];
+    else state.topics[id] = Object.assign(state.topics[id]||{}, {status, at: new Date().toISOString()});
+    save(); route();
+  }));
+  const revised = root.querySelector("#revisedBtn");
+  if(revised) revised.addEventListener("click", () => {
+    const id = location.hash.split("/")[1];
+    state.topics[id] = Object.assign(state.topics[id]||{status:"done"}, {revisedAt: new Date().toISOString(), at: (state.topics[id]&&state.topics[id].at) || new Date().toISOString()});
+    save(); route();
+  });
+  root.querySelectorAll("[data-daily]").forEach(box => box.addEventListener("change", () => {
+    const today = new Date().toISOString().slice(0,10);
+    state.daily[today] = state.daily[today] || {};
+    state.daily[today][box.dataset.daily] = box.checked;
+    save();
+  }));
+  root.querySelectorAll("[data-context]").forEach(el => el.addEventListener("change", () => {
+    state.context[el.dataset.context] = el.value;
+    save();
+  }));
+  root.querySelectorAll("[data-project]").forEach(el => el.addEventListener("change", () => {
+    state.projects[el.dataset.project] = el.value;
+    save(); route();
+  }));
+  root.querySelectorAll("[data-answer]").forEach(el => el.addEventListener("input", () => {
+    state.answers[el.dataset.answer] = el.value;
+    save();
+  }));
+  const reset = root.querySelector("#resetBtn");
+  if(reset) reset.addEventListener("click", () => {
+    if(!confirm("Erase topic progress, project ticks, answers, and context stored in this browser?")) return;
+    const theme = state.theme;
+    localStorage.removeItem(KEY);
+    state = blank();
+    state.theme = theme;
+    save(); route();
+  });
+}
+
+document.getElementById("themeBtn").addEventListener("click", () => setTheme(state.theme === "dark" ? "light" : "dark"));
+document.getElementById("exportBtn").addEventListener("click", () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "upgrade2026-progress.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+document.getElementById("importBtn").addEventListener("click", () => document.getElementById("importFile").click());
+document.getElementById("importFile").addEventListener("change", () => {
+  const file = document.getElementById("importFile").files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const next = JSON.parse(String(reader.result));
+      if(!next || typeof next !== "object") throw new Error("bad");
+      state = Object.assign(blank(), next);
+      save(); route();
+    } catch { alert("That file is not an Upgrade 2026 progress export."); }
+  };
+  reader.readAsText(file);
+});
+document.getElementById("printBtn").addEventListener("click", () => window.print());
+["search","filterLevel","filterPriority"].forEach(id => document.getElementById(id).addEventListener("input", () => {
+  renderNav();
+  const h = location.hash.replace(/^#/,"") || "dashboard";
+  if(h === "curriculum" || h.startsWith("topic/")){
+    const inner = document.getElementById("mainInner");
+    if(inner && h === "curriculum") inner.innerHTML = curriculumHome();
+  }
+}));
+function openDrawer(){
+  document.getElementById("sidebar").classList.add("open");
+  document.getElementById("backdrop").classList.add("show");
+  document.getElementById("menuBtn").setAttribute("aria-expanded","true");
+  document.body.style.overflow = "hidden";
+}
+function closeDrawer(){
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("backdrop").classList.remove("show");
+  document.getElementById("menuBtn").setAttribute("aria-expanded","false");
+  document.body.style.overflow = "";
+}
+function openSheet(){
+  const s = document.getElementById("moreSheet");
+  s.classList.add("show");
+  s.setAttribute("aria-hidden","false");
+  document.body.style.overflow = "hidden";
+}
+function closeSheet(){
+  const s = document.getElementById("moreSheet");
+  s.classList.remove("show");
+  s.setAttribute("aria-hidden","true");
+  if(!document.getElementById("sidebar").classList.contains("open")) document.body.style.overflow = "";
+}
+document.getElementById("menuBtn").addEventListener("click", () => {
+  const sb = document.getElementById("sidebar");
+  if(sb.classList.contains("open")) closeDrawer();
+  else openDrawer();
+});
+document.getElementById("closeSidebar")?.addEventListener("click", closeDrawer);
+document.getElementById("backdrop").addEventListener("click", closeDrawer);
+document.getElementById("sidebar").addEventListener("click", e => { if(e.target.closest("a")) closeDrawer(); });
+document.getElementById("moreBtn")?.addEventListener("click", openSheet);
+document.getElementById("moreBtnBottom")?.addEventListener("click", openSheet);
+document.getElementById("sheetBackdrop")?.addEventListener("click", closeSheet);
+document.getElementById("closeSheet")?.addEventListener("click", closeSheet);
+document.querySelectorAll("#moreSheet a").forEach(a => a.addEventListener("click", closeSheet));
+document.getElementById("themeBtnMobile")?.addEventListener("click", () => { setTheme(state.theme === "dark" ? "light" : "dark"); closeSheet(); });
+document.getElementById("exportBtnMobile")?.addEventListener("click", () => { document.getElementById("exportBtn").click(); closeSheet(); });
+document.getElementById("importBtnMobile")?.addEventListener("click", () => { document.getElementById("importBtn").click(); closeSheet(); });
+document.getElementById("printBtnMobile")?.addEventListener("click", () => { window.print(); closeSheet(); });
+document.addEventListener("keydown", e => {
+  if(e.key === "Escape"){ closeDrawer(); closeSheet(); }
+  if(e.key === "/" && document.activeElement.tagName !== "INPUT" && document.activeElement.tagName !== "TEXTAREA" && document.activeElement.tagName !== "SELECT"){
+    e.preventDefault(); location.hash = "#curriculum"; setTimeout(() => document.getElementById("search")?.focus(), 50);
+  }
+});
+window.addEventListener("resize", syncHeader);
+window.addEventListener("hashchange", route);
+renderNav();
+route();
+</script>
+</body>
+</html>
